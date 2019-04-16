@@ -10,6 +10,7 @@ const branchNamePrefix = 'auto-update-versions';
 const finalTargetBranchName = 'rnwcpp-preview';
 let branchName;
 let rnVersion;
+let listOfChanges;
 
 function exec(command) {
   try {
@@ -61,7 +62,8 @@ function createPr() {
       body: {
         head: branchName,
         base: finalTargetBranchName,
-        title: `Update to react-native@${rnVersion}`
+        title: `Update to react-native@${rnVersion}`,
+        body: 'Automatic update to latest version published from @Microsoft/react-native, includes these changes:\n' + listOfChanges
       }
     },
     function(err, httpResponse, body) {
@@ -81,7 +83,7 @@ function createPr() {
       // Trigger automation
       request.post(
         {
-          url: `https://api.github.com/repos/Microsoft/react-native-windows/pulls/${prId}/comments`,
+          url: `https://api.github.com/repos/Microsoft/react-native-windows/issues/${prId}/comments`,
           json:true,
           headers:{
             Authorization: "Basic " + gitHubToken,
@@ -106,7 +108,7 @@ function createPr() {
               "User-Agent": "RNW-Evergreen Script"
             },
             body: {
-              labels: "AutoMerge"
+              labels: ["AutoMerge"]
             }
           },function(err, httpResponse, body) {
             console.log('HTTP Response \r\n -------------------------------------------------------------------------', httpResponse);
@@ -132,6 +134,7 @@ request.get('https://raw.githubusercontent.com/Microsoft/react-native/master/pac
 
   const pkgJson = JSON.parse(body);
   const pkgJsonPath = path.resolve(__dirname, '../package.json');
+  rnVersion = pkgJson.version;
 
   let existingPkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
 
@@ -144,15 +147,24 @@ request.get('https://raw.githubusercontent.com/Microsoft/react-native/master/pac
     return;
   }
 
+  // Collect log of changes included in this sync
+  listOfChanges = exec(`git log --pretty=oneline --abbrev-commit v${existingPkgJson.devDependencies['react-native']}..v${pkgJson.version}`).toString();
+
   console.log(`Updating react-native to version: ${pkgJson.version}`);
   existingPkgJson.peerDependencies['react-native'] = rnDependency;
   existingPkgJson.devDependencies['react-native'] = pkgJson.version;
 
   branchName = branchNamePrefix + sanitizeBranchName(pkgJson.version);
 
+  exec(`npm install -g yarn`);
+
   exec(`git checkout ${finalTargetBranchName}`);
   exec(`git checkout -b ${branchName}`);
   fs.writeFileSync(pkgJsonPath, JSON.stringify(existingPkgJson, null, 2));
+    // Run yarn install to update yarn.lock
+    exec(`${process.env.APPDATA}\\npm\\node_modules\\yarn\\bin\\yarn.cmd install`);
+
+  exec(`git add ${path.resolve(__dirname, '../yarn.lock')}`);
   exec(`git add ${pkgJsonPath}`);
   exec(`git commit -m "Update to react-native@${pkgJson.version}"`);
   exec(`git push origin ${branchName}`);

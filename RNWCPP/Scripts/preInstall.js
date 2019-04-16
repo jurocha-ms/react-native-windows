@@ -2,14 +2,27 @@
 const execSync = require('child_process').execSync;
 const path = require('path');
 const fs = require('fs');
-const rootPath = execSync('git rev-parse --show-toplevel');
 
 // The default value of our devDependencies assumes that the react-native package is available on a NPM feed
 // For users outside of sdx-platform, we should redirect the dev dependency to a tar from github
-if (path.normalize(rootPath.toString().trim()) === path.resolve(__dirname, '../..')) {
+let replaceDep = true;
+
+try {
+    const rootPath = execSync('git rev-parse --show-toplevel');
+    replaceDep = path.normalize(rootPath.toString().trim()) === path.resolve(__dirname, '../..');
+}
+catch (err) {
+    // CLI will fail at the 'git rev-parse' call because it's not in a git repo, but we still need to redirect the dependency
+}
+
+if (replaceDep) {
     const pkgJsonPath = path.resolve(__dirname, '../package.json');
     let pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
-    pkgJson.rnDepVersion = pkgJson.devDependencies['react-native'];
-    pkgJson.devDependencies['react-native'] = `https://github.com/Microsoft/react-native/archive/v${pkgJson.devDependencies['react-native']}.tar.gz`;
-    fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2));
+
+    if (pkgJson.devDependencies['react-native'].indexOf('https://github.com') === -1) {
+
+        pkgJson.rnDepVersion = pkgJson.devDependencies['react-native'];
+        pkgJson.devDependencies['react-native'] = `https://github.com/Microsoft/react-native/archive/v${pkgJson.devDependencies['react-native']}.tar.gz`;
+        fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2));
+    }
 }
