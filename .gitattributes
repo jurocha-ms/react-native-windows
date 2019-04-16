@@ -1,8 +1,9 @@
 
 # Auto detect text files and perform LF normalization
 
-* text=auto
-
+*       text=auto
+*.cpp   -text
+*.h     -text
 
 
 # Force Visual Studio project files (mostly XML) to CRLF
