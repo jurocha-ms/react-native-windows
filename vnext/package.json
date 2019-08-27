@@ -1,0 +1,75 @@
+{
+  "name": "react-native-windows",
+  "version": "0.59.0-vnext.156",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:microsoft/react-native-windows.git",
+    "directory": "vnext"
+  },
+  "description": "ReactNative Windows implementation using react-native's c++ ReactCommon bridge",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "just-scripts build",
+    "clean": "just-scripts clean",
+    "start": "react-native start",
+    "lint": "just-scripts eslint",
+    "lint:fix": "eslint ./**/*.js ./**/*.ts? --fix",
+    "watch": "tsc -w"
+  },
+  "rnpm": {
+    "haste": {
+      "platforms": [
+        "windows"
+      ],
+      "providesModuleNodeModules": [
+        "react-native-windows"
+      ]
+    },
+    "plugin": "./local-cli/index.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.0",
+    "cli-spinners": "^2.2.0",
+    "create-react-class": "^15.6.3",
+    "fbjs": "^1.0.0",
+    "glob": "^7.1.1",
+    "ora": "^3.4.0",
+    "prop-types": "^15.5.8",
+    "react-native-local-cli": "^1.0.0-alpha.5",
+    "react-timer-mixin": "^0.13.2",
+    "regenerator-runtime": "^0.13.2",
+    "shelljs": "^0.7.8",
+    "username": "^3.0.0",
+    "uuid": "^2.0.1",
+    "xml-parser": "^1.2.1"
+  },
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.3.8",
+    "@microsoft/api-extractor": "^7.3.8",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@types/es6-collections": "^0.5.29",
+    "@types/es6-promise": "0.0.32",
+    "@types/ora": "^3.2.0",
+    "@types/react-native": "~0.57.51",
+    "@types/react": "16.8.15",
+    "eslint-plugin-prettier": "2.6.0",
+    "eslint": "5.1.0",
+    "just-scripts": "^0.24.2",
+    "prettier": "1.13.6",
+    "react-native": "https://github.com/microsoft/react-native/archive/v0.59.0-microsoft.68.tar.gz",
+    "react": "16.8.3",
+    "typescript": "3.5.3"
+  },
+  "peerDependencies": {
+    "react": "16.8.3",
+    "react-native": "^0.59.0 || 0.59.0-microsoft.68 || https://github.com/microsoft/react-native/archive/v0.59.0-microsoft.68.tar.gz"
+  },
+  "beachball": {
+    "disallowedChangeTypes": [
+      "major",
+      "minor",
+      "patch"
+    ]
+  }
+}
