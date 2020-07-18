@@ -121,11 +121,13 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UniversalTestInstance.cpp" />
     <ClCompile Include="UniversalTestRunner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockReactPackageProvider.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="UniversalTestInstance.h" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Application.manifest" />

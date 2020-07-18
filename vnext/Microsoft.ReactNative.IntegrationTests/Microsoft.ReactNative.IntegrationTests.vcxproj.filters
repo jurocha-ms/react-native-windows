@@ -31,12 +31,18 @@
     <ClCompile Include="UniversalTestRunner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UniversalTestInstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MockReactPackageProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UniversalTestInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
