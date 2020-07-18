@@ -72,7 +72,7 @@ TEST_CLASS (ReactNativeHostTests) {
     TestCheckEqual(std::wstring_view{path}, (std::wstring_view)host.InstanceSettings().BundleRootPath());
   }
 
-  SKIPTESTMETHOD(JsFunctionCall_Succeeds) {
+  TEST_METHOD(JsFunctionCall_Succeeds) {
     std::future<TestHostModule &> testHostModule = TestHostModule::Instance.get_future();
     std::future<int> returnValue = TestHostModule::IntReturnValue.get_future();
 

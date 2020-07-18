@@ -28,6 +28,9 @@
     <ClCompile Include="TurboModuleTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="UniversalTestRunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
