@@ -16,8 +16,9 @@ void UniversalTestInstance::AttachMeasuredRootView(std::string &&appName) noexce
 void UniversalTestInstance::DetachRootView() noexcept /*override*/
 {}
 
-std::shared_ptr<facebook::react::Instance> UniversalTestInstance::GetInnerInstance() const noexcept /*override*/
-{}
+std::shared_ptr<facebook::react::Instance> UniversalTestInstance::GetInnerInstance() const noexcept /*override*/ {
+  return nullptr;
+}
 
 #pragma endregion ITestInstance
 
