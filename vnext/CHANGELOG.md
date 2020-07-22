@@ -1,8 +1,29 @@
 # Change Log - react-native-windows
 
-This log was last generated on Fri, 17 Jul 2020 05:06:31 GMT and should not be manually modified.
+This log was last generated on Tue, 21 Jul 2020 05:05:04 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.0-canary.125
+
+Tue, 21 Jul 2020 05:05:04 GMT
+
+### Changes
+
+- Remove ReactWindows-Universal.sln and update publish.yml to use Microsoft.React-native.sln (dannyvv@microsoft.com)
+- Display expected answers and default one (sam@elborai.me)
+- Update e2e-testing.md (dannyvv@microsoft.com)
+- Add windows adk to machine setup script (for build lab) (dannyvv@microsoft.com)
+
+## 0.0.0-canary.124
+
+Sat, 18 Jul 2020 05:04:20 GMT
+
+### Changes
+
+- Fix layout deploy (asklar@microsoft.com)
+- Enabeling SourceLink support. (dannyvv@microsoft.com)
+- Add fix for msbuild long paths in fixup script (dannyvv@microsoft.com)
 
 ## 0.0.0-canary.123
 
