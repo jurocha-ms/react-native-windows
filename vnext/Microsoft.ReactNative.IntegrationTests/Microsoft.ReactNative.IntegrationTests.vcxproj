@@ -123,6 +123,7 @@
     <ClCompile Include="ReactNotificationServiceTests.cpp" />
     <ClCompile Include="ReactPropertyBagTests.cpp" />
     <ClCompile Include="ReactNativeHostTests.cpp" />
+    <ClCompile Include="RNTesterIntegrationTests.cpp" />
     <ClCompile Include="TurboModuleTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -150,6 +151,12 @@
     </ProjectReference>
     <ProjectReference Include="..\IntegrationTests\React.Windows.IntegrationTests.vcxproj">
       <Project>{700a84fd-f92a-43f1-8d06-b0e0745df9b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Folly\Folly.vcxproj">
+      <Project>{A990658C-CE31-4BCC-976F-0FC6B1AF693D}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{fca38f3c-7c73-4c47-be4e-32f77fa8538d}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

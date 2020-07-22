@@ -6,8 +6,7 @@
 namespace Microsoft::React::Test {
 
 UniversalTestInstance::UniversalTestInstance() noexcept
-{
-}
+    : m_queueController{winrt::Windows::System::DispatcherQueueController::CreateOnDedicatedThread()} {}
 
 #pragma region ITestInstance
 

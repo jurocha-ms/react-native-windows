@@ -19,6 +19,11 @@ using std::vector;
 using facebook::react::DevSettings;
 using facebook::xplat::module::CxxModule;
 
+// Stubs
+namespace facebook::react {
+void InitializeLogging(NativeLoggingHook &&) {}
+}
+
 namespace Microsoft::React::Test {
 
 shared_ptr<ITestInstance> TestRunner::GetInstance(

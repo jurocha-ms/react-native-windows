@@ -5,12 +5,14 @@
 
 #include <TestInstance.h>
 #include <winrt/Microsoft.ReactNative.h>
+#include <winrt/Windows.System.h>
 
 namespace Microsoft::React::Test {
 
 class UniversalTestInstance : public ITestInstance
 {
   winrt::Microsoft::ReactNative::ReactNativeHost m_host;
+  winrt::Windows::System::DispatcherQueueController m_queueController;
 
   public:
   UniversalTestInstance() noexcept;
