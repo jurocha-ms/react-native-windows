@@ -15,12 +15,13 @@ void UniversalTestInstance::AttachMeasuredRootView(std::string &&appName) noexce
   m_queueController.DispatcherQueue().TryEnqueue([this]() noexcept {
     //TODO? Add package providers
 
-    m_host.InstanceSettings().UseDeveloperSupport(true);
-    m_host.InstanceSettings().UseLiveReload(false);
+    m_host.InstanceSettings().UseDeveloperSupport(false);
     m_host.InstanceSettings().UseWebDebugger(false);
-    m_host.InstanceSettings().SourceBundleHost(L"localhost");
-    m_host.InstanceSettings().SourceBundlePort(8081);
-    m_host.InstanceSettings().JavaScriptMainModuleName(L"Dummy");
+    m_host.InstanceSettings().UseFastRefresh(false);
+    m_host.InstanceSettings().UseLiveReload(true);
+    m_host.InstanceSettings().EnableDeveloperMenu(false);
+    m_host.InstanceSettings().JavaScriptMainModuleName(L"IntegrationTests/DummyTest");
+
     m_host.LoadInstance();
   });
 }
