@@ -56,7 +56,7 @@ TestResult TestRunner::RunTest(string &&bundlePath, string &&appName, NativeLogg
     // (Win32, WinRT).
     vector<tuple<string, CxxModule::Provider>> modules{
         make_tuple(TestModule::name, [this, &result, &functionCalled]() -> unique_ptr<CxxModule> {
-          return make_unique<TestModule>([this, &result, &functionCalled](bool success) {
+          return make_unique<TestModule>([&result, &functionCalled](bool success) {
             if (TestStatus::Pending != result.Status)
               return;
 
