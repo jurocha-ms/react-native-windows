@@ -37,6 +37,9 @@
     <ClCompile Include="RNTesterIntegrationTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="TurboTestModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -46,6 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UniversalTestInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboTestModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

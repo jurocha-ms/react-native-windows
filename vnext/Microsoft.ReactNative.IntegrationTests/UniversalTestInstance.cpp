@@ -7,33 +7,6 @@
 
 namespace Microsoft::React::Test {
 
-REACT_MODULE(TestModule, L"TestModule")
-struct TestModule
-{
-  static std::function<void(bool)> OnTestCompleted;
-
-  REACT_INIT(Initialize)
-  void Initialize(::React::ReactContext const&) noexcept
-  {
-  }
-
-  REACT_METHOD(MarkTestPassed, L"markTestPassed")
-  void MarkTestPassed(bool success) noexcept {
-    OnTestCompleted(success);
-  }
-
-  REACT_METHOD(MarkTestCompleted, L"markTestCompleted")
-  void MarkTestCompleted() noexcept {
-    MarkTestPassed(true);
-  }
-
-  REACT_METHOD(ShouldResolve, L"shouldResolve")
-  void ShouldResolve() noexcept
-  {
-  }
-};
-std::function<void(bool)> TestModule::OnTestCompleted;
-
 struct TestPackageProvider : winrt::implements<TestPackageProvider, winrt::Microsoft::ReactNative::IReactPackageProvider> {
 
   void CreatePackage(winrt::Microsoft::ReactNative::IReactPackageBuilder const& packageBuilder) noexcept

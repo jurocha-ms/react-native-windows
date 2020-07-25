@@ -29,6 +29,8 @@ class TestRunner {
  public:
   TestRunner();
 
+  void SetOnTestCompleted(std::function<void(bool)>&& onTestCompleted) noexcept;
+
   TestResult
   RunTest(std::string &&bundlePath, std::string &&appName, facebook::react::NativeLoggingHook &&loggingCallback = {});
 };

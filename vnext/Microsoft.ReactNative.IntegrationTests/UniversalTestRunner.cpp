@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+#include "pch.h"
+
 #include <cxxreact/CxxModule.h>
 #include <TestRunner.h>
 #include <DevSettings.h>
 #include "UniversalTestInstance.h"
+#include "TurboTestModule.h"
 
+using std::function;
 using std::make_shared;
 using std::make_tuple;
 using std::make_unique;
@@ -32,6 +36,11 @@ shared_ptr<ITestInstance> TestRunner::GetInstance(
     shared_ptr<DevSettings> devSettings) noexcept {
 
   return shared_ptr<ITestInstance>(new UniversalTestInstance());
+}
+
+void TestRunner::SetOnTestCompleted(function<void(bool)>&& onTestCompleted) noexcept
+{
+  TurboTestModule::OnTestCompleted = std::move(onTestCompleted);
 }
 
 } // namespace Microsoft::React::Test

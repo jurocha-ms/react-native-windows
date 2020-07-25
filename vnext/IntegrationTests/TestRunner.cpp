@@ -66,6 +66,16 @@ TestResult TestRunner::RunTest(string &&bundlePath, string &&appName, NativeLogg
           });
         })};
 
+    SetOnTestCompleted([&result, &functionCalled](bool success) {
+      if (TestStatus::Pending != result.Status)
+        return;
+
+      result.Status = success ? TestStatus::Passed : TestStatus::Failed;
+      result.Message = L"markTestSucceeded(false)";
+
+      ::SetEvent(functionCalled);
+    });
+
     // Note, further configuration should be done in each Windows variant's
     // TestRunner implementation.
     shared_ptr<DevSettings> devSettings = make_shared<DevSettings>();
