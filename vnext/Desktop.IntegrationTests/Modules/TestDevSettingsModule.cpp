@@ -27,15 +27,15 @@ map<string, dynamic> TestDevSettingsModule::getConstants() {
 vector<module::CxxModule::Method> TestDevSettingsModule::getMethods() {
   return {
       {"addMenuItem",
-       [this](dynamic /*args*/) {
+       [](dynamic /*args*/) {
 
        }},
       {"reload",
-       [this](dynamic /*args*/) {
+       [](dynamic /*args*/) {
 
        }},
       {"onFastRefresh",
-       [this](dynamic /*args*/) {
+       [](dynamic /*args*/) {
 
        }},
   };

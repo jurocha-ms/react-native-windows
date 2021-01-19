@@ -86,6 +86,7 @@
   <ItemGroup>
     <ClCompile Include="ChakraRuntimeHolder.cpp" />
     <ClCompile Include="HttpResourceIntegrationTests.cpp" />
+    <ClCompile Include="Modules\RNTesterTestModule.cpp" />
     <ClCompile Include="Modules\TestDevSettingsModule.cpp" />
     <ClCompile Include="Modules\TestImageLoaderModule.cpp" />
     <ClCompile Include="RNTesterIntegrationTests.cpp" />
@@ -119,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="ChakraRuntimeHolder.h" />
     <ClInclude Include="DesktopTestInstance.h" />
+    <ClInclude Include="Modules\RNTesterTestModule.h" />
     <ClInclude Include="Modules\TestDevSettingsModule.h" />
     <ClInclude Include="Modules\TestImageLoaderModule.h" />
   </ItemGroup>

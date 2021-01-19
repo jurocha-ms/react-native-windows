@@ -27,19 +27,19 @@ map<string, dynamic> TestImageLoaderModule::getConstants() {
 vector<module::CxxModule::Method> TestImageLoaderModule::getMethods() {
   return {
       {"getSize",
-       [this](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
+       [](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
 
        }},
       {"getSizeWithHeaders",
-       [this](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
+       [](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
 
        }},
       {"prefetchImage",
-       [this](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
+       [](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
 
        }},
       {"queryCache",
-       [this](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
+       [](dynamic /*args*/, Callback successCallback, Callback errorCallback) {
 
        }},
   };

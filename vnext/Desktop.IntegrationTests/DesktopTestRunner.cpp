@@ -11,6 +11,7 @@
 #include <cxxreact/Instance.h>
 #include "ChakraRuntimeHolder.h"
 #include "DesktopTestInstance.h"
+#include "Modules/RNTesterTestModule.h"
 #include "Modules/TestDevSettingsModule.h"
 #include "Modules/TestImageLoaderModule.h"
 #include "TestInstance.h"
@@ -79,6 +80,10 @@ shared_ptr<ITestInstance> TestRunner::GetInstance(
 
       {TestImageLoaderModule::name,
        []() -> unique_ptr<CxxModule> { return std::make_unique<TestImageLoaderModule>(); },
+       nativeQueue},
+
+      {RNTesterTestModule::name,
+       []() -> unique_ptr<CxxModule> { return std::make_unique<RNTesterTestModule>(); },
        nativeQueue}};
 
   // <0> string

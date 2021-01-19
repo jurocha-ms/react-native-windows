@@ -51,6 +51,9 @@
     <ClCompile Include="Modules\TestImageLoaderModule.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\RNTesterTestModule.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DesktopTestInstance.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Modules\TestImageLoaderModule.h">
+      <Filter>Header Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\RNTesterTestModule.h">
       <Filter>Header Files\Modules</Filter>
     </ClInclude>
   </ItemGroup>

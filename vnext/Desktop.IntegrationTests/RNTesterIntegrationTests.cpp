@@ -164,15 +164,8 @@ TEST_CLASS (RNTesterIntegrationTests) {
     TestComponent("PromiseTest");
   }
 
-  BEGIN_TEST_METHOD_ATTRIBUTE(WebView)
-  TEST_IGNORE()
-  END_TEST_METHOD_ATTRIBUTE()
-  TEST_METHOD(WebView) {
-    TestComponent("WebViewTest");
-  }
-
   BEGIN_TEST_METHOD_ATTRIBUTE(SyncMethod)
-  TEST_IGNORE()
+  // TEST_IGNORE()
   END_TEST_METHOD_ATTRIBUTE()
   TEST_METHOD(SyncMethod) {
     TestComponent("SyncMethodTest");
@@ -191,6 +184,13 @@ TEST_CLASS (RNTesterIntegrationTests) {
   END_TEST_METHOD_ATTRIBUTE()
   TEST_METHOD(AccessibilityManager) {
     TestComponent("AccessibilityManagerTest");
+  }
+
+  BEGIN_TEST_METHOD_ATTRIBUTE(GlobalEvalWithSourceUrlTest)
+  TEST_IGNORE()
+  END_TEST_METHOD_ATTRIBUTE()
+  TEST_METHOD(GlobalEvalWithSourceUrlTest) {
+    TestComponent("GlobalEvalWithSourceUrlTest");
   }
 
 #pragma region Extended Tests
