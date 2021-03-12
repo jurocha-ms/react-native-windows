@@ -16,6 +16,7 @@
     <EnableWinRtLeanAndMean Condition="'$(EnableWinRtLeanAndMean)' == ''">true</EnableWinRtLeanAndMean>
     <LinkIncremental Condition="'$(LinkIncremental)' == '' and '$(Configuration)'=='Debug'" Label="Configuration">true</LinkIncremental>
     <LinkIncremental Condition="'$(LinkIncremental)' == '' and '$(Configuration)'=='Release'" Label="Configuration">false</LinkIncremental>
+    <UseChakra>true</UseChakra>
   </PropertyGroup>
 
   <PropertyGroup Label="Desktop">
@@ -48,6 +49,7 @@
     <ClCompile>
       <PreprocessorDefinitions Condition="'$(UseHermes)'=='true'">USE_HERMES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(UseV8)'=='true'">USE_V8;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(UseChakra)'=='true'">USE_EDGEMODE_JSRT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
 

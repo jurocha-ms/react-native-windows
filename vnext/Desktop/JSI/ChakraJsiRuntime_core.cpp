@@ -13,6 +13,8 @@
 #include <ChakraCore.h>
 #include "ChakraCoreDebugger.h"
 
+//#include <chakrart.h>
+
 namespace Microsoft::JSI {
 
 namespace {
@@ -211,7 +213,7 @@ void ChakraRuntime::ProcessDebuggerCommandQueue() {
   // This code is win32 only at the moment. We will need to change this
   // line if we want to support UWP.
 #if !defined(CHAKRACORE_UWP)
-  constexpr wchar_t chakraDllName[] = L"ChakraCore.dll";
+  constexpr wchar_t chakraDllName[] = L"Chakra.dll";
 
   auto freeLibraryWrapper = [](void *p) { FreeLibrary((HMODULE)p); };
   HMODULE moduleHandle;
