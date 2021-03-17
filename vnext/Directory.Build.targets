@@ -37,6 +37,7 @@
     <Message Text="=> BrowseInformationFile       [@(CLCompile->Metadata('BrowseInformationFile')->DirectoryName()->Distinct())]" />
     <Message Text="=> PreprocessOutputPath        [@(CLCompile->Metadata('PreprocessOutputPath')->DirectoryName()->Distinct())]" />
     <Message Text="=> PreprocessorDefinitions     [@(CLCompile->Metadata('PreprocessorDefinitions')->Distinct())]" />
+    <Message Text="=> DisableSpecificWarnings     [@(CLCompile->Metadata('DisableSpecificWarnings')->Distinct())]" />
     <Message Text="=> ClDirsToMake                [@(ClDirsToMake)]" />
 
     <Message Text="%0A" />
