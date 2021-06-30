@@ -1,3 +1,5 @@
+// See https://github.com/crossbario/autobahn-testsuite/blob/v0.8.2/autobahntestsuite/autobahntestsuite/web/fuzzingserver/test_browser.html
+
 const WebSocket = require('ws');
 
 var statusWs = null;
