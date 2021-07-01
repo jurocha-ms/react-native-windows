@@ -78,6 +78,6 @@ function runNextCase(currentCaseId)
       }
 }
 
-runNextCase(2);
+runNextCase(process.argv[2]);
 
 // var ws = new WebSocket('ws://localhost:9001/runCase?case=1&agent=unknown');ws.binaryType = "arraybuffer";ws.onopen = (e) => { console.log("Executing test case"); };ws.conclose = (e) => { ws = null; console.log("All executed"); };ws.onmessage = (e) => { console.log(`Got data: ${e.data}`); ws.send(e.data); }; ws.onerror = (e) => { console.log('[FAIL]'); }
