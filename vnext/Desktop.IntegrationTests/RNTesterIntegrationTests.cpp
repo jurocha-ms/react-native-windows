@@ -27,7 +27,7 @@ TEST_MODULE_INITIALIZE(InitModule) {
   Microsoft::React::SetRuntimeOptionBool("UseBeastWebSocket", false);
 
   // WebSocketJSExecutor can't register native log hooks.
-  Microsoft::React::SetRuntimeOptionBool("RNTester.UseWebDebugger", false);
+  Microsoft::React::SetRuntimeOptionBool("RNTester.UseWebDebugger", true);
 }
 
 TEST_CLASS (RNTesterIntegrationTests) {
@@ -210,6 +210,13 @@ TEST_CLASS (RNTesterIntegrationTests) {
   END_TEST_METHOD_ATTRIBUTE()
   TEST_METHOD(WebSocketBinary) {
     auto result = m_runner.RunTest("IntegrationTests/WebSocketBinaryTest", "WebSocketBinaryTest");
+    Assert::AreEqual(TestStatus::Passed, result.Status, result.Message.c_str());
+  }
+
+  BEGIN_TEST_METHOD_ATTRIBUTE(WebSocketAutobahn)
+  END_TEST_METHOD_ATTRIBUTE()
+  TEST_METHOD(WebSocketAutobahn) {
+    auto result = m_runner.RunTest("IntegrationTests/WebSocketAutobahnTest", "WebSocketAutobahnTest");
     Assert::AreEqual(TestStatus::Passed, result.Status, result.Message.c_str());
   }
 

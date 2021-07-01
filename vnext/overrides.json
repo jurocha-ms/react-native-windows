@@ -92,6 +92,10 @@
     },
     {
       "type": "platform",
+      "file": "src/IntegrationTests/WebSocketAutobahnTest.js"
+    },
+    {
+      "type": "platform",
       "file": "src/IntegrationTests/WebSocketBinaryTest.js"
     },
     {
