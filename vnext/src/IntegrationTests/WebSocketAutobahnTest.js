@@ -18,6 +18,8 @@ const agent = 'rnw';
 
 var statusWs = null;
 var caseWs = null;
+var countWs = null;
+var caseCount = 0;
 
 class WebSocketAutobahnTest extends React.Component {
 
@@ -40,37 +42,76 @@ class WebSocketAutobahnTest extends React.Component {
   runCase(id) {
     console.log('runcase0');
     var url = URL_BASE + `/runCase?case=${id}&agent=${agent}`;
+    console.log(`ze url: [${url}]`);
 
     console.log('runcase_constrING');
-    testWs = new WebSocket(url);
+    caseWs = new WebSocket(url);
     console.log('runcase_constrED');
-    testWs.binaryType = 'arraybuffer';
-    testWs.onopen = (e) => {
+    caseWs.binaryType = 'arraybuffer';
+    caseWs.onopen = (e) => {
       console.log('runcase_onopen');
       this.updateStatus(`Executing test case ${id}`);
     }
-    testWs.onclose = (e) => {
+    caseWs.onclose = (e) => {
       console.log('runcase_onclsoe');
-      testWs = null;
+      caseWs = null;
 
       this.updateStatus('Case socket finished');
       this.updateReports();
     }
-    testWs.onerror = (e) => {
+    caseWs.onerror = (e) => {
       console.log('runcase_onerror');
       TestModule.markTestPassed(false);
     }
-    testWs.onmessage = (e) => {
+    caseWs.onmessage = (e) => {
       console.log('runcase_onmessage');
-      testWs.send(e.data);
+      caseWs.send(e.data);
       TestModule.markTestPassed(true);
     }
   }
 
+  waitFor(condition, timeout, callback) {
+    let remaining = timeout;
+    const timeoutFunction = () => {
+      if (condition()) {
+        callback(true);
+        return;
+      }
+      remaining--;
+      if (remaining === 0) {
+        callback(false);
+      } else {
+        setTimeout(timeoutFunction, 1000);
+      }
+    }
+    setTimeout(timeoutFunction, 1000);
+  }
+
   componentDidMount() {
-    console.log('chaaaaale');
-    this.runCase(1);
-    //TestModule.markTestPassed(true);
+
+    countWs = new WebSocket(`${URL_BASE}/getCaseCount`);
+    countWs.onmessage = (e) => {
+      caseCount = e.data;
+    }
+
+    this.waitFor(() => { return caseCount > 0 }, 5, (countRetrieved) => {
+      if (!countRetrieved) {
+        console.error('Failed to retrieve case count');
+        TestComponent.markTestPassed(false);
+        return;
+      }
+
+      if (caseCount < 1) {
+        console.error(`Case count too low: [${caseCount}]`);
+        TestModule.markTestPassed(false);
+        return;
+      } else {
+        console.log(`Retrieved [${caseCount}] cases`);
+      }
+
+      //TestModule.markTestPassed(true);
+      this.runCase(1);
+    });
   }
 
   render() {
