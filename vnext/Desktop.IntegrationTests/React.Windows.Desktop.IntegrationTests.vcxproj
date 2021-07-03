@@ -85,7 +85,6 @@
   </ItemDefinitionGroup>
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\ReactCommunity.cpp.props" />
   <ItemGroup>
-    <ClCompile Include="AutobahnIntegrationTests.cpp" />
     <ClCompile Include="ChakraRuntimeHolder.cpp" />
     <ClCompile Include="HttpResourceIntegrationTests.cpp" />
     <ClCompile Include="Modules\TestDevSettingsModule.cpp" />

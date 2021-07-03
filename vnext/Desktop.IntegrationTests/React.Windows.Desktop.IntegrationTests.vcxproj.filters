@@ -48,9 +48,6 @@
     <ClCompile Include="Modules\TestImageLoaderModule.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="AutobahnIntegrationTests.cpp">
-      <Filter>Integration Tests</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DesktopTestInstance.h">
