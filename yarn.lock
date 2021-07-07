@@ -1474,6 +1474,11 @@
   resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-7.3.5.tgz#ffd195472f345b32fb29ba3c86a1ee68c09f24b3"
   integrity sha512-6bm5lzGDOeSnWHM5W8OZ86RD2KpchynU+/Qlm5hNEFjfLDhwfAY2lSe68YRUEYFGlxSHe0HmakyhvmtWoD3Zog==
 
+"@octokit/openapi-types@^8.2.1":
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-8.2.1.tgz#102e752a7378ff8d21057c70fd16f1c83856d8c5"
+  integrity sha512-BJz6kWuL3n+y+qM8Pv+UGbSxH6wxKf/SBs5yzGufMHwDefsa+Iq7ZGy1BINMD2z9SkXlIzk1qiu988rMuGXEMg==
+
 "@octokit/plugin-paginate-rest@^2.6.2":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-2.7.0.tgz#6bb7b043c246e0654119a6ec4e72a172c9e2c7f3"
@@ -1486,12 +1491,12 @@
   resolved "https://registry.yarnpkg.com/@octokit/plugin-request-log/-/plugin-request-log-1.0.2.tgz#394d59ec734cd2f122431fbaf05099861ece3c44"
   integrity sha512-oTJSNAmBqyDR41uSMunLQKMX0jmEXbwD1fpz8FG27lScV3RhtGfBa1/BBLym+PxcC16IBlF7KH9vP1BUYxA+Eg==
 
-"@octokit/plugin-rest-endpoint-methods@5.3.4":
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-5.3.4.tgz#291dea5af9eecf4d457884d9efbcf72aabbaff57"
-  integrity sha512-2Y2q/FYCsW5tcwIqgnLOgzZXEb3I1VoSQGyHs/Zki/Ufs5H+uT0maPVHatLKw90LQbqK7ON8NpL3Y8IyzG6pNA==
+"@octokit/plugin-rest-endpoint-methods@5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-5.4.1.tgz#540ec90bb753dcaa682ee9f2cd6efdde9132fa90"
+  integrity sha512-Nx0g7I5ayAYghsLJP4Q1Ch2W9jYYM0FlWWWZocUro8rNxVwuZXGfFd7Rcqi9XDWepSXjg1WByiNJnZza2hIOvQ==
   dependencies:
-    "@octokit/types" "^6.16.7"
+    "@octokit/types" "^6.18.1"
     deprecation "^2.3.1"
 
 "@octokit/request-error@^2.0.5", "@octokit/request-error@^2.1.0":
@@ -1516,21 +1521,28 @@
     universal-user-agent "^6.0.0"
 
 "@octokit/rest@^18.5.3":
-  version "18.6.3"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-18.6.3.tgz#0283de05d5dbc9d3adcacb208c055db03000abf9"
-  integrity sha512-BeV2P48RR3MVPhSBq6KXXHMVHEJg5vnFBkFN1GKPXBohXTp+eb0gJq+5iYgkjbOMG6biNvkKllPDWJchpQHHiA==
+  version "18.6.7"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-18.6.7.tgz#89b8ecd13edd9603f00453640d1fb0b4175d4b31"
+  integrity sha512-Kn6WrI2ZvmAztdx+HEaf88RuJn+LK72S8g6OpciE4kbZddAN84fu4fiPGxcEu052WmqKVnA/cnQsbNlrYC6rqQ==
   dependencies:
     "@octokit/core" "^3.5.0"
     "@octokit/plugin-paginate-rest" "^2.6.2"
     "@octokit/plugin-request-log" "^1.0.2"
-    "@octokit/plugin-rest-endpoint-methods" "5.3.4"
+    "@octokit/plugin-rest-endpoint-methods" "5.4.1"
 
-"@octokit/types@^6.0.0", "@octokit/types@^6.0.1", "@octokit/types@^6.0.3", "@octokit/types@^6.16.1", "@octokit/types@^6.16.7":
+"@octokit/types@^6.0.0", "@octokit/types@^6.0.1", "@octokit/types@^6.0.3", "@octokit/types@^6.16.1":
   version "6.16.7"
   resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.16.7.tgz#f27e87daf7ed87bde3e67b2e71956468fa4d02a7"
   integrity sha512-OuQELiwIKeDySgNID52vm33wDRc2aaX8lKYgAw9Hmw939ITow1HspT8/AH3M3jgGFUMDmHlMNBNEmH7xV7ggXQ==
   dependencies:
     "@octokit/openapi-types" "^7.3.5"
+
+"@octokit/types@^6.18.1":
+  version "6.18.1"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.18.1.tgz#a6db178536e649fd5d67a7b747754bcc43940be4"
+  integrity sha512-5YsddjO1U+xC8ZYKV8yZYebW55PCc7qiEEeZ+wZRr6qyclynzfyD65KZ5FdtIeP0/cANyFaD7hV69qElf1nMsQ==
+  dependencies:
+    "@octokit/openapi-types" "^8.2.1"
 
 "@opencensus/web-types@0.0.7":
   version "0.0.7"
@@ -1910,9 +1922,9 @@
     "@types/responselike" "*"
 
 "@types/chai@^4.2.14":
-  version "4.2.19"
-  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.19.tgz#80f286b515897413c7a35bdda069cc80f2344233"
-  integrity sha512-jRJgpRBuY+7izT7/WNXP/LsMO9YonsstuL+xuvycDyESpoDoIAsMd7suwpB4h9oEWB+ZlPTqJJ8EHomzNhwTPQ==
+  version "4.2.20"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.20.tgz#bb02e7d02b6c452f6bbb8fe575b56e180644de67"
+  integrity sha512-E121rHk/4BlcEwANZOwcHl8L/Sl0zyIFXJoyggXkl7FCT/4MTf5u25f+qiphe0V5ELaFIkCptgvbf4whCJUVMA==
 
 "@types/chalk@^2.2.0":
   version "2.2.0"
@@ -2199,9 +2211,9 @@
     "@types/node" "*"
 
 "@types/uuid@^8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
-  integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.1.tgz#1a32969cf8f0364b3d8c8af9cc3555b7805df14f"
+  integrity sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==
 
 "@types/valid-url@^1.0.3":
   version "1.0.3"
@@ -2209,28 +2221,28 @@
   integrity sha512-+33x29mg+ecU88ODdWpqaie2upIuRkhujVLA7TuJjM823cNMbeggfI6NhxewaRaRF8dy+g33e4uIg/m5Mb3xDQ==
 
 "@types/ws@^7.4.0":
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.5.tgz#8ff0f7efcd8fea19f51f9dd66cb8b498d172a752"
-  integrity sha512-8mbDgtc8xpxDDem5Gwj76stBDJX35KQ3YBoayxlqUQcL5BZUthiqP/VQ4PQnLHqM4PmlbyO74t98eJpURO+gPA==
+  version "7.4.6"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.6.tgz#c4320845e43d45a7129bb32905e28781c71c1fff"
+  integrity sha512-ijZ1vzRawI7QoWnTNL8KpHixd2b2XVb9I9HAqI3triPsh1EC0xH0Eg6w2O3TKbDCgiNNlJqfrof6j4T2I+l9vw==
   dependencies:
     "@types/node" "*"
 
 "@types/xml-parser@^1.2.29":
-  version "1.2.29"
-  resolved "https://registry.yarnpkg.com/@types/xml-parser/-/xml-parser-1.2.29.tgz#6ba14c2916e52baa4fd8b7cb93b10a7ca55ff9f7"
-  integrity sha512-l5ID65aPDctN/dZYkDgLOEBuoHrD8S9TyfD5soORUtVHKyOs7Wr66iNxAtcmT/tER1GeYqp51jR6l08gmsRcZg==
+  version "1.2.30"
+  resolved "https://registry.yarnpkg.com/@types/xml-parser/-/xml-parser-1.2.30.tgz#16792b77a8dd5514bd0533931259fca17d6d4ad9"
+  integrity sha512-QBCRpkCoGdtUgLzLHcA5E7Dg9fJNdhuZd6IshuPxmf3EbVqrslWVTHOIDEWGx//16FoMElpOXxIR3utIWsPoIA==
 
 "@types/xml2js@^0.4.8":
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/@types/xml2js/-/xml2js-0.4.8.tgz#84c120c864a5976d0b5cf2f930a75d850fc2b03a"
-  integrity sha512-EyvT83ezOdec7BhDaEcsklWy7RSIdi6CNe95tmOAK0yx/Lm30C9K75snT3fYayK59ApC2oyW+rcHErdG05FHJA==
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@types/xml2js/-/xml2js-0.4.9.tgz#a38267d8c2fe121c96922b12ee3bd89a58a6e20e"
+  integrity sha512-CHiCKIihl1pychwR2RNX5mAYmJDACgFVCMT5OArMaO3erzwXVcBqPcusr+Vl8yeeXukxZqtF8mZioqX+mpjjdw==
   dependencies:
     "@types/node" "*"
 
 "@types/xmldom@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@types/xmldom/-/xmldom-0.1.30.tgz#d36d9a7d64af4693d3b18d5dc02ce432a95be12e"
-  integrity sha512-edqgAFXMEtVvaBZ3YnhamvmrHjoYpuxETmnb0lbTZmf/dXpAsO9ZKotUO4K2rn2SIZBDFCMOuA7fOe0H6dRZcA==
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@types/xmldom/-/xmldom-0.1.31.tgz#519b647cfc66debf82cdf50e49763c8fdee553d6"
+  integrity sha512-bVy7s0nvaR5D1mT1a8ZkByHWNOGb6Vn4yi5TWhEdmyKlAG+08SA7Md6+jH+tYmMLueAwNeWvHHpeKrr6S4c4BA==
 
 "@types/yargs-parser@*":
   version "13.1.0"
@@ -7900,9 +7912,9 @@ metro-react-native-babel-transformer@0.66.0, metro-react-native-babel-transforme
     nullthrows "^1.1.1"
 
 metro-resolver@0.66.0, metro-resolver@^0.66.0:
-  version "0.66.0"
-  resolved "https://registry.yarnpkg.com/metro-resolver/-/metro-resolver-0.66.0.tgz#068c1bb98cd80c239f051e7b0f43f00e763b889d"
-  integrity sha512-JUbkmznwgMSb5ViFpvau5sPD7uuZekToVsitrDLTAeMPruvjxjae2+XSIai9NmcGSprfvqyGYURlz0qXu1YnJQ==
+  version "0.66.1"
+  resolved "https://registry.yarnpkg.com/metro-resolver/-/metro-resolver-0.66.1.tgz#1b10118964008464a98d5e3932e8f37d66955ac0"
+  integrity sha512-3hZSxLqDRJXn7ci3dylrzKiLzT05RIBpn0K9wRyTf6SD4y5XHZ7L0y5+BRxKJegjny2C5SYsarclCg/+14RsjA==
   dependencies:
     absolute-path "^0.0.0"
 
