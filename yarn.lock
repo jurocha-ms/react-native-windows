@@ -1943,13 +1943,13 @@
     find-up "^5.0.0"
 
 "@rnx-kit/metro-config@^1.2.27":
-  version "1.2.28"
-  resolved "https://registry.yarnpkg.com/@rnx-kit/metro-config/-/metro-config-1.2.28.tgz#9fd703f369c31c6672887653ee066d60f02ac138"
-  integrity sha512-efe1hwqsZGxTQwPvHzIvZWmD86R+U3/jbuWQkJwytnhdZ5jWOzdrUHBrMIEitOwFaq8smInR/WN2UFcsFsWEOA==
+  version "1.2.31"
+  resolved "https://registry.yarnpkg.com/@rnx-kit/metro-config/-/metro-config-1.2.31.tgz#827e99d95399b625d638728f57b60dfc4dfce1d8"
+  integrity sha512-fbdrN4ZvdSsG5xnOjbiycmLozl3iDcALKwjVSeb1CDsufIl1+LKkW5tWWtpTYlxGRddQwf4y2a2nomjSk2Zpuw==
   dependencies:
     "@rnx-kit/babel-preset-metro-react-native" "^1.0.17"
-    "@rnx-kit/tools-node" "^1.2.6"
-    workspace-tools "^0.18.2"
+    "@rnx-kit/tools-node" "^1.2.7"
+    workspace-tools "^0.18.3"
 
 "@rnx-kit/metro-plugin-duplicates-checker@^1.2.15":
   version "1.2.15"
@@ -1971,10 +1971,10 @@
   resolved "https://registry.yarnpkg.com/@rnx-kit/tools-language/-/tools-language-1.2.6.tgz#ced63a53ce9821d14acb57a927237e5c39801387"
   integrity sha512-8pq4JlFIkOqjwkN6amYebQ2CTAa1EeYjSBurGh8upYZtqUZBXDOK7FUAx+OVHs/7qQfmF2lU7QpqA7DZGv4xJA==
 
-"@rnx-kit/tools-node@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@rnx-kit/tools-node/-/tools-node-1.2.6.tgz#34de31b1c2ec681a3009b27c137cc1f2c57b7e9c"
-  integrity sha512-oiVbP801aabLCBl42l448QPlui/SEQcuWURZOmVbg04ntyLGgUNgYN87Zen+2yr/LnnI2ec1SOtftHbK6Ro+5A==
+"@rnx-kit/tools-node@^1.2.6", "@rnx-kit/tools-node@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@rnx-kit/tools-node/-/tools-node-1.2.7.tgz#ae702763d26fc9b5a0984c5fddd90e38e03b06a1"
+  integrity sha512-vgURBJttO8z1nSrJm3KWgzEO3/oat5Rn/Fx2b9XyEf7y2CzJh1fwf48XddDnzmSKFNd/SihP7hDcVcEqZ/evCQ==
   dependencies:
     "@rnx-kit/tools-language" "^1.2.6"
     find-up "^5.0.0"
@@ -4106,7 +4106,7 @@ command-line-usage@^6.1.0:
     table-layout "^1.0.1"
     typical "^5.2.0"
 
-commander@^2.19.0, commander@^2.7.1, commander@^2.8.1:
+commander@^2.19.0, commander@^2.20.3, commander@^2.8.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -6932,9 +6932,9 @@ jest-jasmine2@^26.6.3:
     throat "^5.0.0"
 
 jest-junit@^10.0.0, jest-junit@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-13.0.0.tgz#479be347457aad98ae8a5983a23d7c3ec526c9a3"
-  integrity sha512-JSHR+Dhb32FGJaiKkqsB7AR3OqWKtldLd6ZH2+FJ8D4tsweb8Id8zEVReU4+OlrRO1ZluqJLQEETm+Q6/KilBg==
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-13.1.0.tgz#c364b90b88ad2492dae4002f00c9fed75e0590c4"
+  integrity sha512-ECbhzEG3Oe2IH3Mnwcv2vAXM4qTbcObN/gTUzwKPlpaNsf2G/zlj/teEUqRGV17YQiQ4AqzTf3pCO7W59DKVIw==
   dependencies:
     mkdirp "^1.0.4"
     strip-ansi "^6.0.1"
@@ -11561,10 +11561,10 @@ workspace-tools@^0.16.2:
     multimatch "^4.0.0"
     read-yaml-file "^2.0.0"
 
-workspace-tools@^0.18.2:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.18.2.tgz#59753b5fb7c709f72250c8fbf5ccfe1903033a7d"
-  integrity sha512-XEW7VrD5XmYNLli89cHGQESf6Jgh45ELlKJQHbAAwd67XfC+Tf+hpJZ+GLFsKPIzJ+xIUvnJE6F71ScsMfu7KA==
+workspace-tools@^0.18.3:
+  version "0.18.3"
+  resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.18.3.tgz#55864c76a92b50556ddcd756cf0c6db5618b0cb1"
+  integrity sha512-AsUScmMM+HrDzBjbxlpc041VNLRnP9EzAOk0YxZHxAT0wnVtZmoe+FgKPOGX4s7oRUobwKqBRhaJDAuaAP78ZQ==
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     find-up "^4.1.0"
@@ -11794,15 +11794,15 @@ yauzl@^2.10.0, yauzl@^2.4.2:
     fd-slicer "~1.1.0"
 
 z-schema@^5.0.2, z-schema@~3.18.3:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/z-schema/-/z-schema-5.0.2.tgz#f410394b2c9fcb9edaf6a7511491c0bb4e89a504"
-  integrity sha512-40TH47ukMHq5HrzkeVE40Ad7eIDKaRV2b+Qpi2prLc9X9eFJFzV7tMe5aH12e6avaSS/u5l653EQOv+J9PirPw==
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/z-schema/-/z-schema-5.0.3.tgz#68fafb9b735fc7f3c89eabb3e5a6353b4d7b4935"
+  integrity sha512-sGvEcBOTNum68x9jCpCVGPFJ6mWnkD0YxOcddDlJHRx3tKdB2q8pCHExMVZo/AV/6geuVJXG7hljDaWG8+5GDw==
   dependencies:
     lodash.get "^4.4.2"
     lodash.isequal "^4.5.0"
     validator "^13.7.0"
   optionalDependencies:
-    commander "^2.7.1"
+    commander "^2.20.3"
 
 zip-stream@^4.0.4:
   version "4.0.4"
