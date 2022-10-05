@@ -1,5 +1,3 @@
-//clang-format off
-
 #include "../Shared/Networking/IHttpResource.h"
 #include <winrt/base.h>
 #include <stdio.h>
@@ -11,159 +9,130 @@ using namespace Microsoft::React::Networking;
 
 using std::promise;
 using std::string;
+using std::wstring;
 
-// https://learn.microsoft.com/en-us/previous-versions/dotnet/articles/bb625960(v=msdn.10)?redirectedfrom=MSDN
-BOOL CreateLowProcess()
+static constexpr const WCHAR *swzAdfLowILSandboxSid = L"S-1-16-4096";
+
+PSID pSIDSandbox;
+PROCESS_INFORMATION processInfoSandbox;
+HRESULT CreateLowILProcess() noexcept
 {
-  BOOL fRet;
-  HANDLE                hToken        = NULL;
-  HANDLE                hNewToken     = NULL;
-  PSID                  pIntegritySid = NULL;
-  TOKEN_MANDATORY_LABEL TIL           = {0};
-  PROCESS_INFORMATION   ProcInfo      = {0};
-  STARTUPINFO           StartupInfo   = {0};
+  wstring commandLine = L"C:\\Windows\\System32\\notepad.exe";
+  commandLine = L"R:\\lowil\\vnext\\target\\x64\\Debug\\SandboxTest\\SandboxTest.exe SOMEARG";
+  wstring wstrEventSyncName =
+      L"60758A28-A98E-47F8-84D8-795A8D5A0C54";
 
-  // Notepad is used as an example
-  WCHAR wszProcessName[MAX_PATH] = L"C:\\Windows\\System32\\Notepad.exe";
-
-  // Low integrity SID
-  WCHAR wszIntegritySid[20] = L"S-1-16-1024";
-  //PSID pIntegritySid = NULL;
-
-  fRet = OpenProcessToken(GetCurrentProcess(),
-                          TOKEN_DUPLICATE |
-                          TOKEN_ADJUST_DEFAULT |
-                          TOKEN_QUERY |
-                          TOKEN_ASSIGN_PRIMARY,
-                          & hToken);
-
-  if (!fRet)
+  BOOL fSetToken = FALSE;
+  HANDLE hProcTokenLowIl;
+  HANDLE hMICToken;
+  BOOL fOpenProcToken = OpenProcessToken(GetCurrentProcess(), MAXIMUM_ALLOWED, &hProcTokenLowIl);
   {
-    goto CleanExit;
+    BOOL fConvertSid = TRUE;
+    BOOL fDuplicateToken = DuplicateTokenEx(
+      hProcTokenLowIl,
+      MAXIMUM_ALLOWED,
+      NULL,
+      SecurityImpersonation,
+      TokenImpersonation,
+      &hMICToken);
+
+    if (fDuplicateToken) {
+      if (pSIDSandbox == nullptr) {
+        fConvertSid = ConvertStringSidToSid(swzAdfLowILSandboxSid, &pSIDSandbox);
+      }
+
+      if (fConvertSid) {
+        // Set Process IL to Low
+        TOKEN_MANDATORY_LABEL TML = {0};
+        TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED;
+        TML.Label.Sid = pSIDSandbox;
+
+        BOOL fPILToken =
+            SetTokenInformation(hMICToken, TokenIntegrityLevel, &TML, sizeof(TML) + GetLengthSid(pSIDSandbox));
+
+        if (fPILToken) {
+          fSetToken = SetThreadToken(nullptr, hMICToken);
+        }
+      } // if (fConvertSid)
+
+      if (!fOpenProcToken || !fDuplicateToken || !fConvertSid || !fSetToken) {
+        // FAIL
+      }
+    }
+  } // Scope
+
+  HANDLE hEventRemoter = ::CreateEvent(
+      NULL /*lpEventAttributes*/, false /*bManualReset*/, false /*bInitialState*/, wstrEventSyncName.c_str());
+  //TODO: check
+
+  STARTUPINFOEX si = {};
+  si.StartupInfo.cb = sizeof(si);
+
+  const int32_t iCountRetry = 5;
+  bool fCreateProcess = false;
+  fCreateProcess = CreateProcessAsUser(
+        hMICToken,
+        nullptr,
+        (LPWSTR)commandLine.c_str(),
+        nullptr /*lpProcessAttributes*/,
+        nullptr /*lpThreadAttributes*/,
+        false /*bInheritHandles*/,
+        0 /*EXTENDED_STARTUP_INFO_PRESENT*/,
+        NULL /*lpEnvironment*/,
+        NULL /*lpCurrentDirectory*/, (LPSTARTUPINFO)&si, &processInfoSandbox);
+
+  if (!fCreateProcess || processInfoSandbox.hProcess == NULL || processInfoSandbox.hThread == NULL) {
+    auto err = HRESULT_FROM_WIN32(GetLastError());
   }
 
-  fRet = DuplicateTokenEx(hToken,
-                          0,
-                          NULL,
-                          SecurityImpersonation,
-                          TokenPrimary,
-                          & hNewToken);
+  auto dwWaitStatus = WaitForSingleObject(hEventRemoter, 0);
 
-  if (!fRet)
-  {
-    goto CleanExit;
-  }
-
-  fRet = ConvertStringSidToSid(wszIntegritySid, &pIntegritySid);
-
-  if (!fRet)
-  {
-    goto CleanExit;
-  }
-
-  TIL.Label.Attributes = SE_GROUP_INTEGRITY;
-  TIL.Label.Sid         = pIntegritySid;
-
-  //
-  // Set the process integrity level
-  //
-
-  fRet = SetTokenInformation(hNewToken,
-                              TokenIntegrityLevel,
-                              & TIL,
-                              sizeof(TOKEN_MANDATORY_LABEL) + GetLengthSid(pIntegritySid));
-
-  if (!fRet)
-  {
-    goto CleanExit;
-  }
-
-  //
-  // Create the new process at Low integrity
-  //
-
-  fRet  = CreateProcessAsUser(hNewToken,
-                              NULL,
-                              wszProcessName,
-                              NULL,
-                              NULL,
-                              FALSE,
-                              0,
-                              NULL,
-                              NULL,
-                              & StartupInfo,
-                              & ProcInfo);
-
-CleanExit:
-  if (ProcInfo.hProcess != NULL)
-  {
-    CloseHandle(ProcInfo.hProcess);
-  }
-
-  if (ProcInfo.hThread != NULL)
-  {
-    CloseHandle(ProcInfo.hThread);
-  }
-
-  LocalFree(pIntegritySid);
-
-  if (hNewToken != NULL)
-  {
-    CloseHandle(hNewToken);
-  }
-
-  if (hToken != NULL)
-  {
-    CloseHandle(hToken);
-  }
-
-  return fRet;
+  return S_OK;
 }
 
-int main()
+int main(int argc, char ** argv)
 {
-#if 0
-  winrt::init_apartment();
+  if (argc < 2) {
+    auto ans = CreateLowILProcess();
+  } else {
+    winrt::init_apartment();
 
-  string errorMessage;
-  promise<void> resPromise;
-  auto rc = IHttpResource::Make();
+    string errorMessage;
+    promise<void> resPromise;
+    auto rc = IHttpResource::Make();
 
-  rc->SetOnResponse([](int64_t, IHttpResource::Response res)
-  {
-    int x = 88;
-  });
+    rc->SetOnResponse([](int64_t, IHttpResource::Response res)
+    {
+      int x = 88;
+    });
 
-  rc->SetOnData([&resPromise](int64_t, string &&content)
-  {
-    auto x = content.size();
-    resPromise.set_value();
-  });
+    rc->SetOnData([&resPromise](int64_t, string &&content)
+    {
+      auto x = content.size();
+      resPromise.set_value();
+    });
 
-  rc->SetOnError([&errorMessage, &resPromise](int64_t, string &&message, bool)
-  {
-    errorMessage = std::move(message);
-    resPromise.set_value();
-  });
+    rc->SetOnError([&errorMessage, &resPromise](int64_t, string &&message, bool)
+    {
+      errorMessage = std::move(message);
+      resPromise.set_value();
+    });
 
-  rc->SendRequest(
-    "GET",
-    "http://help.websiteos.com/websiteos/",
-    0,
-    {},
-    {},
-    "text",
-    false,
-    0,
-    false,
-    [](int64_t) {}
-  );
+    rc->SendRequest(
+      "GET",
+      "http://help.websiteos.com/websiteos/",
+      0,
+      {},
+      {},
+      "text",
+      false,
+      0,
+      false,
+      [](int64_t) {}
+    );
 
-  resPromise.get_future().wait();
+    resPromise.get_future().wait();
 
-  printf("[%s]\n", errorMessage.c_str());
-
-#else
-  auto ans = CreateLowProcess();
-#endif // 0
+    printf("[%s]\n", errorMessage.c_str());
+  }
 }
