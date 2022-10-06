@@ -44,24 +44,23 @@ HRESULT CreateLowILProcess() noexcept {
       }
 
       if (fConvertSid) {
-        TOKEN_MANDATORY_LABEL privNetTml = {0};
-        privNetTml.Label.Sid = privNetPsid;
-        privNetTml.Label.Attributes =
-          0
+        // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ne-ntifs-_token_information_class
+        TOKEN_GROUPS privNetTg = {0};
+        privNetTg.Groups->Sid = privNetPsid;
+        privNetTg.Groups->Attributes = 0
           //| FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK
           | SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER
-          | SECURITY_CAPABILITY_INTERNET_EXPLORER
+          //| SECURITY_CAPABILITY_INTERNET_EXPLORER
         ;
 
-        // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ne-ntifs-_token_information_class
-        //BOOL privNetSetToken = SetTokenInformation(
-        //    hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
-        //auto err = HRESULT_FROM_WIN32(GetLastError());
+        BOOL privNetSetToken = SetTokenInformation(
+            hMICToken, TokenCapabilities, &privNetTg, sizeof(privNetTg) + GetLengthSid(privNetPsid));
+        auto err = HRESULT_FROM_WIN32(GetLastError());
 
-        //if (!SUCCEEDED(err)) {
-        //  printf("Failed SetTokenInformation: [%x]", err);
-        //  exit(err);
-        //}
+        if (!SUCCEEDED(err)) {
+          printf("Failed SetTokenInformation: [%x]", err);
+          exit(err);
+        }
 
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
