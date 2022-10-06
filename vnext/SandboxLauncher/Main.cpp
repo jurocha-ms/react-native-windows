@@ -10,11 +10,12 @@ using std::string;
 using std::wstring;
 
 static constexpr const WCHAR *swzAdfLowILSandboxSid = L"S-1-16-4096";
+static constexpr const WCHAR *privNetSidStr = L"S-1-15-3-3";
 
-PSID pSIDSandbox;
 PROCESS_INFORMATION processInfoSandbox;
-HRESULT CreateLowILProcess() noexcept
-{
+PSID pSIDSandbox;
+PSID privNetPsid;
+HRESULT CreateLowILProcess() noexcept {
   //wstring commandLine = L"C:\\Windows\\System32\\notepad.exe";
   wstring commandLine = L"SandboxTest.exe";
   wstring wstrEventSyncName =
@@ -37,9 +38,20 @@ HRESULT CreateLowILProcess() noexcept
     if (fDuplicateToken) {
       if (pSIDSandbox == nullptr) {
         fConvertSid = ConvertStringSidToSid(swzAdfLowILSandboxSid, &pSIDSandbox);
+        fConvertSid = ConvertStringSidToSid(privNetSidStr, &privNetPsid);
       }
 
       if (fConvertSid) {
+        TOKEN_MANDATORY_LABEL privNetTml = {0};
+        privNetTml.Label.Attributes = FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK;
+        privNetTml.Label.Sid = privNetPsid;
+
+        // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ne-ntifs-_token_information_class
+        BOOL privNetSetToken = SetTokenInformation(
+            //hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
+            hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
+        auto err = HRESULT_FROM_WIN32(GetLastError());
+
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
         TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED
@@ -51,7 +63,7 @@ HRESULT CreateLowILProcess() noexcept
         BOOL fPILToken =
             SetTokenInformation(hMICToken, TokenIntegrityLevel, &TML, sizeof(TML) + GetLengthSid(pSIDSandbox));
 
-        if (fPILToken) {
+        if (fPILToken /*&& privNetSetToken*/) {
           fSetToken = SetThreadToken(nullptr, hMICToken);
         }
       } // if (fConvertSid)
