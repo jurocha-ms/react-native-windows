@@ -45,20 +45,27 @@ HRESULT CreateLowILProcess() noexcept {
 
       if (fConvertSid) {
         TOKEN_MANDATORY_LABEL privNetTml = {0};
-        privNetTml.Label.Attributes = FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK;
         privNetTml.Label.Sid = privNetPsid;
+        privNetTml.Label.Attributes =
+          0
+          //| FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK
+          | SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER
+          | SECURITY_CAPABILITY_INTERNET_EXPLORER
+        ;
 
         // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ne-ntifs-_token_information_class
         //BOOL privNetSetToken = SetTokenInformation(
         //    hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
         //auto err = HRESULT_FROM_WIN32(GetLastError());
 
+        //if (!SUCCEEDED(err)) {
+        //  printf("Failed SetTokenInformation: [%x]", err);
+        //  exit(err);
+        //}
+
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
-        TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED
-          //| SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER
-          //| FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK
-          ;
+        TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED;
         TML.Label.Sid = pSIDSandbox;
 
         BOOL fPILToken =
