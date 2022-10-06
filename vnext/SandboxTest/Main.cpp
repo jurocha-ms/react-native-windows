@@ -50,10 +50,10 @@ int main(int argc, char ** argv)
   resPromise.get_future().wait();
 
   if (errorMessage.size()) {
-    printf("[FAIL]\n");
+    printf("\n[FAIL]\n");
     printf("%s\n", errorMessage.c_str());
   } else {
-    printf("[SUCCESS]\n");
+    printf("\n[SUCCESS]\n");
     printf("%d: %s\n", status, content.c_str());
   }
 }
