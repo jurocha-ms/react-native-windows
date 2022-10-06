@@ -4,6 +4,8 @@
 #include <string>
 #include <stdlib.h>
 
+#include <fwpmtypes.h>
+
 using std::string;
 using std::wstring;
 
@@ -40,7 +42,10 @@ HRESULT CreateLowILProcess() noexcept
       if (fConvertSid) {
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
-        TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED;
+        TML.Label.Attributes = SE_GROUP_INTEGRITY | SE_GROUP_INTEGRITY_ENABLED
+          //| SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER
+          //| FWPM_APPC_NETWORK_CAPABILITY_INTERNET_PRIVATE_NETWORK
+          ;
         TML.Label.Sid = pSIDSandbox;
 
         BOOL fPILToken =
