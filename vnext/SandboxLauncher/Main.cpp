@@ -10,7 +10,9 @@ using std::string;
 using std::wstring;
 
 static constexpr const WCHAR *swzAdfLowILSandboxSid = L"S-1-16-4096";
-static constexpr const WCHAR *privNetSidStr = L"S-1-15-3-3";
+static constexpr const WCHAR *privNetSidStr =
+  L"S-1-15-3-3";
+  //L"S-1-15-3-4096";
 
 PROCESS_INFORMATION processInfoSandbox;
 PSID pSIDSandbox;
@@ -47,10 +49,9 @@ HRESULT CreateLowILProcess() noexcept {
         privNetTml.Label.Sid = privNetPsid;
 
         // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ne-ntifs-_token_information_class
-        BOOL privNetSetToken = SetTokenInformation(
-            //hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
-            hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
-        auto err = HRESULT_FROM_WIN32(GetLastError());
+        //BOOL privNetSetToken = SetTokenInformation(
+        //    hMICToken, TokenCapabilities, &privNetTml, sizeof(privNetTml) + GetLengthSid(privNetPsid));
+        //auto err = HRESULT_FROM_WIN32(GetLastError());
 
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
