@@ -53,14 +53,14 @@ HRESULT CreateLowILProcess() noexcept {
           //| SECURITY_CAPABILITY_INTERNET_EXPLORER
         ;
 
-        BOOL privNetSetToken = SetTokenInformation(
-            hMICToken, TokenCapabilities, &privNetTg, sizeof(privNetTg) + GetLengthSid(privNetPsid));
-        auto err = HRESULT_FROM_WIN32(GetLastError());
+        //BOOL privNetSetToken = SetTokenInformation(
+        //    hMICToken, TokenCapabilities, &privNetTg, sizeof(privNetTg) + GetLengthSid(privNetPsid));
+        //auto err = HRESULT_FROM_WIN32(GetLastError());
 
-        if (!SUCCEEDED(err)) {
-          printf("Failed SetTokenInformation: [%x]", err);
-          exit(err);
-        }
+        //if (!SUCCEEDED(err)) {
+        //  printf("Failed SetTokenInformation: [%x]", err);
+        //  exit(err);
+        //}
 
         // Set Process IL to Low
         TOKEN_MANDATORY_LABEL TML = {0};
