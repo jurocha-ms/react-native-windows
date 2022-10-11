@@ -50,7 +50,7 @@ void RequestWithRnw()
 
 #endif // WITH_RNW
 
-winrt::Windows::Foundation::IAsyncAction GetRequest()
+IAsyncAction GetRequest()
 {
   try {
     auto client = HttpClient{};
@@ -60,7 +60,6 @@ winrt::Windows::Foundation::IAsyncAction GetRequest()
 
     wprintf(L"\nHTTP STATUS [%d]:\n\n%s\n", response.StatusCode(), body.c_str());
   } catch (const winrt::hresult_error &e) {
-    auto m = e.message();
     wprintf(L"\n[0x%x] %s\n", static_cast<unsigned int>(e.code()), e.message().c_str());
   }
 }
