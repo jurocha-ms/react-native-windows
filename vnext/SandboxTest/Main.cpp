@@ -1,17 +1,20 @@
-#include "../Shared/Networking/IHttpResource.h"
 #include <winrt/base.h>
+#include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Web.Http.h>
 #include <stdio.h>
-#include <future>
 #include <stdlib.h>
+#ifdef WITH_RNW
+#include <future>
+#include "../Shared/Networking/IHttpResource.h"
+#endif
 
-using namespace Microsoft::React::Networking;
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Web::Http;
 
+#ifdef WITH_RNW
+				using namespace Microsoft::React::Networking;
 using std::promise;
 using std::string;
-
 void RequestWithRnw()
 {
   string errorMessage;
@@ -32,31 +35,33 @@ void RequestWithRnw()
     resPromise.set_value();
   });
 
-  rc->SendRequest("GET", "http://help.websiteos.com", 0, {}, {}, "text", false, 0, false, [](int64_t) {});
+  rc->SendRequest("GET", "https://raw.githubusercontent.com/microsoft/react-native-windows/main/.yarnrc.yml", 0, {}, {}, "text", false, 0, false, [](int64_t) {});
 
   resPromise.get_future().wait();
 
   if (errorMessage.size()) {
-    printf("\n[FAIL]\n");
+    printf("\nRNW [FAIL]\n");
     printf("%s\n", errorMessage.c_str());
   } else {
-    printf("\n[SUCCESS]\n");
+    printf("\nRNW [SUCCESS]\n");
     printf("%d: %s\n", status, content.c_str());
   }
 }
 
+#endif // WITH_RNW
+
 winrt::Windows::Foundation::IAsyncAction GetRequest()
 {
-  auto client = HttpClient{};
-
-  HttpResponseMessage response;
   try {
-    response = co_await client.GetAsync(Uri{L"https://raw.githubusercontent.com/microsoft/react-native-windows/main/.yarnrc.yml"});
+    auto client = HttpClient{};
+    auto response = co_await client.GetAsync(
+        Uri{L"https://raw.githubusercontent.com/microsoft/react-native-windows/main/.yarnrc.yml"});
     auto body = co_await response.Content().ReadAsStringAsync();
 
-    wprintf(L"HTTP STATUS [%d]:\n\n%s\n", response.StatusCode(), body.c_str());
+    wprintf(L"\nHTTP STATUS [%d]:\n\n%s\n", response.StatusCode(), body.c_str());
   } catch (const winrt::hresult_error &e) {
-    wprintf(L"[%x] %s\n", e.code(), e.message());
+    auto m = e.message();
+    wprintf(L"\n[0x%x] %s\n", static_cast<unsigned int>(e.code()), e.message().c_str());
   }
 }
 
@@ -64,5 +69,11 @@ int main(int argc, char ** argv)
 {
   winrt::init_apartment();
 
+#ifdef WITH_RNW
+  RequestWithRnw();
+#else
   GetRequest().get();
+#endif // WITH_RNW
+
+  system("pause");
 }

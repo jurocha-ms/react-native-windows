@@ -113,6 +113,4 @@ HRESULT CreateLowILProcess() noexcept {
 int main(int argc, char ** argv)
 {
   auto ans = CreateLowILProcess();
-
-  //system("PAUSE");
 }

@@ -129,29 +129,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <!--
-        BOOST_ASIO_HAS_IOCP - Force unique layout/size for boost::asio::basic_stream_socket<> subtypes.
-        CORE_ABI - marks ABI elements that are shared between UWP and Win32 DLLs.
-      -->
       <PreprocessorDefinitions>
         _WINSOCK_DEPRECATED_NO_WARNINGS;
         _WIN32_WINNT=_WIN32_WINNT_WIN8;
-        FOLLY_NO_CONFIG;
         %(PreprocessorDefinitions)
       </PreprocessorDefinitions>
-      <!-- <AdditionalIncludeDirectories>
-        %(AdditionalIncludeDirectories);
-        "$(ReactNativeWindowsDir)Microsoft.ReactNative";
-        "$(ReactNativeWindowsDir)Microsoft.ReactNative\ReactHost";
-      </AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /Zc:strictStrings /bigobj</AdditionalOptions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles> -->
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Desktop.DLL\React.Windows.Desktop.DLL.vcxproj">
+    <ProjectReference Include="..\Desktop.DLL\React.Windows.Desktop.DLL.vcxproj"
+                      Condition="'$(WithRnw)' == 'true'">
       <Project>{88bab0fa-e1ac-4da7-a30c-f91702a8eadb}</Project>
     </ProjectReference>
     <ProjectReference Include="..\SandboxTest\SandboxTest.vcxproj">
@@ -165,7 +152,7 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
-    <PackageReference Include="boost" Version="1.76.0.0" />
+    <PackageReference Include="boost" Version="1.76.0.0" Condition="'$(WithRnw)' == 'true'" />
     <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.211028.7" />
   </ItemGroup>
   <ItemGroup>
@@ -173,7 +160,8 @@
     Used by the 'CopyFilesToOutputDirectory' target (more specifically, its '_CopyFilesMarkedCopyLocal' dependency')
     to co-locate dependencies with the test binary.
      -->
-    <ReferenceCopyLocalPaths Include="$(OutputPath)..\React.Windows.Desktop.DLL\react-native-win32.dll" />
-    <ReferenceCopyLocalPaths Include="$(OutputPath)..\SandboxTest\SandboxTest.exe" />
+    <ReferenceCopyLocalPaths  Include="$(OutputPath)..\React.Windows.Desktop.DLL\react-native-win32.dll"
+                              Condition="'$(WithRnw)' == 'true'" />
+    <ReferenceCopyLocalPaths  Include="$(OutputPath)..\SandboxTest\SandboxTest.exe" />
   </ItemGroup>
 </Project>
