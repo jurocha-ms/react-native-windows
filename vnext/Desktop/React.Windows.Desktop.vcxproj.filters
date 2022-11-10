@@ -159,6 +159,7 @@
     <ClCompile Include="..\Microsoft.ReactNative\ReactHost\ReactErrorProvider.cpp" />
     <ClCompile Include="..\Microsoft.ReactNative\ReactHost\ReactInstanceWin.cpp" />
     <ClCompile Include="..\Microsoft.ReactNative\RedBoxHandler.cpp" />
+    <ClCompile Include="..\Microsoft.ReactNative\ReactHost\CrashManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABI\MessageQueueShim.h">
