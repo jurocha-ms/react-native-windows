@@ -55,7 +55,7 @@ msrn::ReactModuleProvider s_moduleProvider = msrn::MakeTurboModuleProvider<Micro
 static void SetUpHttpResource(
     shared_ptr<IHttpResource> resource,
     weak_ptr<Instance> weakReactInstance,
-    IInspectable &inspectableProperties) {
+    const IInspectable &inspectableProperties) {
   resource->SetOnRequestSuccess([weakReactInstance](int64_t requestId) {
     auto args = dynamic::array(requestId);
 
@@ -215,15 +215,9 @@ void HttpTurboModule::RemoveListeners(double count) noexcept { /*NOOP*/
 #pragma region HttpModule
 
 HttpModule::HttpModule(IInspectable const &inspectableProperties) noexcept
-    : m_holder{std::make_shared<ModuleHolder>()},
-      m_inspectableProperties{inspectableProperties},
-      m_resource{IHttpResource::Make(inspectableProperties)} {
-  m_holder->Module = this;
-}
-
-HttpModule::~HttpModule() noexcept /*override*/ {
-  m_holder->Module = nullptr;
-}
+    : m_inspectableProperties{inspectableProperties},
+      m_resource{IHttpResource::Make(inspectableProperties)},
+      m_incRequestId{ [requestId = &m_requestId]() mutable -> int64_t { (*requestId)++; return *requestId; } } {}
 
 #pragma region CxxModule
 
@@ -237,26 +231,15 @@ std::map<string, dynamic> HttpModule::getConstants() {
 
 // clang-format off
 std::vector<facebook::xplat::module::CxxModule::Method> HttpModule::getMethods() {
+  // See CxxNativeModule::lazyInit()
+  SetUpHttpResource(m_resource, getInstance(), m_inspectableProperties);
 
   return
   {
     {
       "sendRequest",
-      [weakHolder = weak_ptr<ModuleHolder>(m_holder)](dynamic args, Callback cxxCallback)
+      [resource = m_resource, incRequestId = m_incRequestId](dynamic args, Callback cxxCallback)
       {
-        auto holder = weakHolder.lock();
-        if (!holder) {
-          return;
-        }
-
-        auto resource = holder->Module->m_resource;
-        if (!holder->Module->m_isResourceSetup)
-        {
-          SetUpHttpResource(resource, holder->Module->getInstance(), holder->Module->m_inspectableProperties);
-          holder->Module->m_isResourceSetup = true;
-        }
-        holder->Module->m_requestId++;
-
         auto params = facebook::xplat::jsArgAsObject(args, 0);
         IHttpResource::Headers headers;
         for (auto& header : params["headers"].items()) {
@@ -266,7 +249,7 @@ std::vector<facebook::xplat::module::CxxModule::Method> HttpModule::getMethods()
         resource->SendRequest(
           params["method"].asString(),
           params["url"].asString(),
-          holder->Module->m_requestId,
+          incRequestId(),
           std::move(headers),
           Modules::ToJSValue(params["data"]).MoveObject(),
           params["responseType"].asString(),
@@ -281,41 +264,15 @@ std::vector<facebook::xplat::module::CxxModule::Method> HttpModule::getMethods()
     },
     {
       "abortRequest",
-      [weakHolder = weak_ptr<ModuleHolder>(m_holder)](dynamic args)
+      [resource = m_resource](dynamic args)
       {
-        auto holder = weakHolder.lock();
-        if (!holder)
-        {
-          return;
-        }
-
-        auto resource = holder->Module->m_resource;
-        if (!holder->Module->m_isResourceSetup)
-        {
-          SetUpHttpResource(resource, holder->Module->getInstance(), holder->Module->m_inspectableProperties);
-          holder->Module->m_isResourceSetup = true;
-        }
-
         resource->AbortRequest(facebook::xplat::jsArgAsInt(args, 0));
       }
     },
     {
       "clearCookies",
-      [weakHolder = weak_ptr<ModuleHolder>(m_holder)](dynamic args)
+      [resource = m_resource](dynamic args)
       {
-        auto holder = weakHolder.lock();
-        if (!holder)
-        {
-          return;
-        }
-
-        auto resource = holder->Module->m_resource;
-        if (!holder->Module->m_isResourceSetup)
-        {
-          SetUpHttpResource(resource, holder->Module->getInstance(), holder->Module->m_inspectableProperties);
-          holder->Module->m_isResourceSetup = true;
-        }
-
         resource->ClearCookies();
       }
     }

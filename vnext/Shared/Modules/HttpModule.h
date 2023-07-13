@@ -55,8 +55,6 @@ class HttpModule : public facebook::xplat::module::CxxModule {
 
   HttpModule(winrt::Windows::Foundation::IInspectable const &inspectableProperties) noexcept;
 
-  ~HttpModule() noexcept override;
-
 #pragma region CxxModule
 
   /// <summary>
@@ -78,14 +76,9 @@ class HttpModule : public facebook::xplat::module::CxxModule {
 #pragma endregion CxxModule
 
  private:
-  struct ModuleHolder {
-    HttpModule *Module{nullptr};
-  };
-
   std::shared_ptr<Networking::IHttpResource> m_resource;
-  std::shared_ptr<ModuleHolder> m_holder;
-  bool m_isResourceSetup{false};
   int64_t m_requestId{0};
+  std::function<int64_t()> m_incRequestId;
 
   // Property bag high level reference.
   winrt::Windows::Foundation::IInspectable m_inspectableProperties;
