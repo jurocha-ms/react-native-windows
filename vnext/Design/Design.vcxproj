@@ -76,12 +76,41 @@
     <Import Project="..\PropertySheets\WinUI.props" Condition="'$(UseWinUI3)'=='true'" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup>
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <!--
+        BOOST_ASIO_HAS_IOCP - Force unique layout/size for boost::asio::basic_stream_socket<> subtypes.
+        CORE_ABI - marks ABI elements that are shared between UWP and Win32 DLLs.
+      -->
+      <PreprocessorDefinitions>
+        BOOST_ASIO_HAS_IOCP;
+        _WINSOCK_DEPRECATED_NO_WARNINGS;
+        _WIN32_WINNT=$(WinVer);
+        WIN32;
+        CORE_ABI;
+        _WINDOWS;
+        FOLLY_CFG_NO_COROUTINES;
+        FOLLY_NO_CONFIG;
+        NOMINMAX;
+        _HAS_AUTO_PTR_ETC;
+        RN_PLATFORM=win32;
+        RN_EXPORT=;
+        JSI_EXPORT=;
+        <!-- See https://cplusplus.github.io/LWG/issue3840 -->
+        _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING;
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>
+        "$(ReactNativeWindowsDir)Microsoft.ReactNative";
+        "$(ReactNativeWindowsDir)Microsoft.ReactNative\Fabric\platform";
+        "$(ReactNativeWindowsDir)Microsoft.ReactNative\ReactHost";
+        "$(ReactNativeWindowsDir)Microsoft.ReactNative\Views";
+        "$(ReactNativeWindowsDir)codegen";
+        "$(ReactNativeWindowsDir)codegen\react\components\rnwcore";
+        $(ReactNativeDir)\ReactCommon\react\renderer\graphics\platform\cxx;
+        %(AdditionalIncludeDirectories);
+      </AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Zc:strictStrings /bigobj /await</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
