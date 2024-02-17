@@ -31,6 +31,35 @@
         "requested": "[1.0.2-p.5, )",
         "resolved": "1.0.2-p.5",
         "contentHash": "1tAtFgtbVpI/JgRIxy9j30R/W6B1zi9dYt0o5QwAk5V3X2mo9xrrHcbXlbczKQIftYoNHe0Mfq9ExIu9A1Cs0g=="
+      },
+      "common": {
+        "type": "Project",
+        "dependencies": {
+          "boost": "[1.76.0, )"
+        }
+      },
+      "fmt": {
+        "type": "Project"
+      },
+      "folly": {
+        "type": "Project",
+        "dependencies": {
+          "Fmt": "[1.0.0, )",
+          "boost": "[1.76.0, )"
+        }
+      },
+      "follywin32": {
+        "type": "Project",
+        "dependencies": {
+          "Folly": "[1.0.0, )"
+        }
+      },
+      "reactcommon": {
+        "type": "Project",
+        "dependencies": {
+          "Folly": "[1.0.0, )",
+          "boost": "[1.76.0, )"
+        }
       }
     },
     "native,Version=v0.0/win": {},
