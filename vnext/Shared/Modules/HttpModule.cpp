@@ -7,7 +7,6 @@
 
 #include <CreateModules.h>
 #include <Modules/CxxModuleUtilities.h>
-#include <ReactPropertyBag.h>
 
 // React Native
 #include <cxxreact/Instance.h>
@@ -19,10 +18,6 @@ using std::function;
 using std::shared_ptr;
 using std::string;
 using std::weak_ptr;
-using winrt::Microsoft::ReactNative::IReactPropertyBag;
-using winrt::Microsoft::ReactNative::ReactNonAbiValue;
-using winrt::Microsoft::ReactNative::ReactPropertyBag;
-using winrt::Microsoft::ReactNative::ReactPropertyId;
 using winrt::Windows::Foundation::IInspectable;
 
 namespace msrn = winrt::Microsoft::ReactNative;
