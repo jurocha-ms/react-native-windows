@@ -8,11 +8,17 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Microsoft::React::HttpModule" Collapsed="true">
-    <Position X="4.25" Y="1" Width="1.5" />
+    <Position X="7" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAQAAAAAAAEAAAAAIAAAAAAAABIAAgAAEAEAAAAA=</HashCode>
       <FileName>R:\dev\vnext\Shared\Modules\HttpModule.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="Microsoft::React::Networking::IHttpResource" Collapsed="true">
+    <Position X="1.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
