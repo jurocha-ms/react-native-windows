@@ -1,21 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Microsoft::React::Networking::WinRTHttpResource" Collapsed="true">
-    <Position X="4.25" Y="2.25" Width="1.5" />
+  <Class Name="Microsoft::React::Networking::WinRTHttpResource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>JIAAAgAoTEkAAgCgAAAIBCCIIAgAAIAEgIAAAABIChA=</HashCode>
       <FileName>R:\dev\vnext\Shared\Networking\WinRTHttpResource.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Microsoft::React::HttpModule" Collapsed="true">
-    <Position X="6.75" Y="1" Width="1.5" />
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Microsoft::React::HttpModule::MethodId" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>R:\dev\vnext\Shared\Modules\HttpModule.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="Microsoft::React::HttpModule::ModuleHolder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>R:\dev\vnext\Shared\Modules\HttpModule.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>EAAAAQAAAAAAAEAAAAAIAAAAAAAABIAAgAAEAEAAAAA=</HashCode>
       <FileName>R:\dev\vnext\Shared\Modules\HttpModule.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Microsoft::React::BlobModule" Collapsed="true">
+    <Position X="9" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAEAAAAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Modules\BlobModule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::React::Networking::DefaultBlobResource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAQAAgIAAAAAEgCAGAgCQAAAAAAAABAAQAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\DefaultBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::React::Networking::BlobModuleRequestBodyHandler" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAACQAAAAAAAAAAABAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\DefaultBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::React::Networking::BlobModuleResponseHandler" Collapsed="true">
+    <Position X="3.5" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAQAAAAAAAAAAAAACAAAAAAAAAAAABAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\DefaultBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::React::Networking::BlobWebSocketModuleContentHandler" Collapsed="true">
+    <Position X="0.5" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAHAAAAAAAAEAAIEAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\DefaultBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::React::Networking::MemoryBlobPersistor" Collapsed="true">
+    <Position X="6" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAAQAAIAAIAAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\DefaultBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Microsoft::React::Networking::IHttpResource" Collapsed="true">
-    <Position X="4.25" Y="1" Width="1.5" />
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::Networking::IBlobResource" Collapsed="true">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAIAAAQAEgAACAAAAgAAAAAAABIAQAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Networking\IBlobResource.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::IHttpModuleProxy" Collapsed="true">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAACAAAAAAAAAAAIAAAAAACAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Modules\IHttpModuleProxy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::IRequestBodyHandler" Collapsed="true">
+    <Position X="1" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Modules\IRequestBodyHandler.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::IResponseHandler" Collapsed="true">
+    <Position X="4" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Modules\IResponseHandler.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::IBlobPersistor" Collapsed="true">
+    <Position X="6" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::IWebSocketModuleContentHandler" Collapsed="true">
+    <Position X="0.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAA=</HashCode>
+      <FileName>R:\dev\vnext\Shared\Modules\IWebSocketModuleContentHandler.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Microsoft::React::Networking::IWinRTHttpRequestFactory" Collapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
