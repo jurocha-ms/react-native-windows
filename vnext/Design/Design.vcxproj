@@ -122,6 +122,16 @@
     <Link>
       <AdditionalOptions>%(AdditionalOptions) /minpdbpathlen:256</AdditionalOptions>
     </Link>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ReactNativeWindowsDir)\Microsoft.ReactNative;$(ReactNativeWindowsDir)\Microsoft.ReactNative.Cxx;</AdditionalIncludeDirectories>
+      <!--
+        CORE_ABI - marks ABI elements that are shared between UWP and Win32 DLLs.
+      -->
+      <PreprocessorDefinitions>CORE_ABI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <Midl>
+      <PreprocessorDefinitions Condition="'$(UseFabric)' == 'true'">USE_FABRIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
   </ItemDefinitionGroup>
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\ReactCommunity.cpp.props" />
   <ItemGroup>
