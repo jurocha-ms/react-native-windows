@@ -123,6 +123,7 @@
       <AdditionalOptions>%(AdditionalOptions) /minpdbpathlen:256</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
+  <Import Project="$(ReactNativeWindowsDir)\PropertySheets\ReactCommunity.cpp.props" />
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
