@@ -15,19 +15,17 @@ const {AppRegistry, View} = ReactNative;
 const {TestModule} = ReactNative.NativeModules;
 
 const uri =
-  'http://localhost:5555/static/utf-8.txt';
+  'http://localhost:5555/rnw/http/encoding/utf-8';
+  //'http://localhost:5555/static/utf-8.txt';
 const expectedContent = 'Property of Contoso–Amélior™';
 
 type State = {
   uri: string,
-  expected: string,
   content: string,
 };
 
 class FetchTest extends React.Component<{...}, State> {
   state: State = {
-    uri: 'http://localhost:5555/static/utf-8.txt',
-    expected: 'Property of Contoso–Amélior™',
     content: '',
   };
 

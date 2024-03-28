@@ -51,6 +51,30 @@ app.Map("/", async context =>
   }
 });
 
+// Known values:
+// utf-8
+// iso-8859-1
+app.MapGet("/rnw/http/encoding/{charset}", async (HttpContext context, string charset) =>
+{
+  var response = context.Response;
+  response.StatusCode = 200;
+
+  response.ContentType = "text/plain";
+  if (!string.IsNullOrEmpty(charset))
+    response.ContentType += $";charset={charset}";
+
+  // Property of Contoso–Amélior™
+  var bytes = new byte[] {
+    // Property of Cont
+    0x50, 0x72, 0x6F, 0x70, 0x65, 0x72, 0x74, 0x79, 0x20, 0x6F, 0x66, 0x20, 0x43, 0x6F, 0x6E, 0x74,
+    // oso–Amélior™
+    0x6F, 0x73, 0x6F, 0xE2, 0x80, 0x93, 0x41, 0x6D, 0xC3, 0xA9, 0x6C, 0x69, 0x6F, 0x72, 0xE2, 0x84,
+    0xA2
+  };
+
+  await response.Body.WriteAsync(bytes);
+});
+
 app.Map(
   "/rnw/rntester/websocketbinarytest",
   Facebook.React.Test.RNTesterIntegrationTests.WebSocketBinaryTest
