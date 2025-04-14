@@ -4049,9 +4049,9 @@ bcrypt-pbkdf@^1.0.0:
     tweetnacl "^0.14.3"
 
 beachball@^2.20.0:
-  version "2.51.0"
-  resolved "https://registry.yarnpkg.com/beachball/-/beachball-2.51.0.tgz#6e4e930626fcdf9998099df7be0a8bd6d6cabeed"
-  integrity sha512-Io+mzUb2QnTeOFDzyho0woU6FnUf1UlJLljJUIyMMJqxxj/sflXe5/CKnWk1c00FGRjMyftSx7oo7fD4Rf3ZEw==
+  version "2.53.0"
+  resolved "https://registry.yarnpkg.com/beachball/-/beachball-2.53.0.tgz#c84576b19d79e28e5a7b0e3f11ead91ceb9d5fd8"
+  integrity sha512-ySnz8FcbPJbHBiF79CvsVccidVTwnvNysKzfKpScey1XWmCxFVvHlgzbBD+fRln41eJrBDeh6QuL6qeTfxkTHQ==
   dependencies:
     cosmiconfig "^8.3.6"
     execa "^5.0.0"
@@ -4063,7 +4063,7 @@ beachball@^2.20.0:
     prompts "^2.4.2"
     semver "^7.0.0"
     toposort "^2.0.2"
-    workspace-tools "^0.38.0"
+    workspace-tools "^0.38.2"
     yargs-parser "^21.0.0"
 
 before-after-hook@^2.2.0:
@@ -11880,10 +11880,10 @@ wordwrapjs@^4.0.0:
     reduce-flatten "^2.0.0"
     typical "^5.2.0"
 
-workspace-tools@^0.38.0:
-  version "0.38.0"
-  resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.38.0.tgz#5d7677f9c9f0a7df592537b17b378d1c33eddb86"
-  integrity sha512-BpvydL36Q+AVBU6Rj/a7nfxfEhxvX4ZkLVCsUx5LJ5UpzIcvLDgxvnolBSY+2MUU8VYhvf+PGtF7eWS8xBC1Iw==
+workspace-tools@^0.38.2:
+  version "0.38.2"
+  resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.38.2.tgz#6c744262911eab25c42ddeb99bfba8eebd9690ca"
+  integrity sha512-9AhSCYY+daWxmj7HaLlsqKRpEOG0CEhaHqAqLT8ZRC0PdeiRtKAG2nAOdmizwP3OBhWHL9EZdxjGtPP0Xb7nfA==
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     fast-glob "^3.3.1"
