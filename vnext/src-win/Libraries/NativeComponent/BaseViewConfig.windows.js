@@ -217,6 +217,7 @@ const validAttributesForNonEventProps = {
   accessibilityIgnoresInvertColors: true,
   accessibilityShowsLargeContentViewer: true,
   accessibilityLargeContentTitle: true,
+  experimental_accessibilityOrder: true,
   testID: true,
   backgroundColor: {process: require('../StyleSheet/processColor').default},
   backfaceVisibility: true,
@@ -384,6 +385,7 @@ const validAttributesForNonEventProps = {
   accessibilityAnnotation: true, // [Windows]
   accessibilityItemType: true, // [Windows]
   accessibilityAccessKey: true, // [Windows]
+  accessibilityDescription: true, // [Windows]
   disabled: true, // [Windows]
   focusable: true, // [Windows]
   keyDownEvents: true, // [Windows]
@@ -392,6 +394,7 @@ const validAttributesForNonEventProps = {
   tooltip: true, // [Windows]
   onClick: true, // [Windows]
   enableFocusRing: true, // [Windows]
+  importantForAccessibility: true, // [Windows]
 
   style: ReactNativeStyleAttributes,
 };

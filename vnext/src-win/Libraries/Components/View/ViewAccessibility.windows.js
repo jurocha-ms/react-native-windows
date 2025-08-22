@@ -93,7 +93,8 @@ export type AccessibilityRole =
   | 'drawerlayout'
   | 'slidingdrawer'
   | 'iconmenu'
-  | 'listitem'; // RNW-only
+  | 'listitem' // RNW-only
+  | string;
 
 // Role types for web
 export type Role =
@@ -408,6 +409,13 @@ export type AccessibilityProps = $ReadOnly<{
    * https://github.com/facebook/react-native/issues/34424
    */
   'aria-label'?: ?Stringish,
+
+  /**
+   * Defines the order in which descendant elements receive accessibility focus.
+   * The elements in the array represent nativeID values for the respective
+   * descendant elements.
+   */
+  experimental_accessibilityOrder?: ?Array<string>,
 
   /**
    * Indicates to accessibility services to treat UI component like a specific role.

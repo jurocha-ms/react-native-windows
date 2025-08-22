@@ -1,8 +1,33 @@
 # Change Log - @react-native-windows/telemetry
 
-<!-- This log was last generated on Fri, 30 May 2025 05:25:01 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 20 Aug 2025 05:26:04 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.123
+
+Wed, 20 Aug 2025 05:26:04 GMT
+
+### Changes
+
+- Update CLI to show static warning for old architecture in run-windows and interactive prompt for init-windows (#15029) (54227869+anupriya13@users.noreply.github.com)
+
+## 0.0.0-canary.122
+
+Thu, 17 Jul 2025 05:27:01 GMT
+
+### Changes
+
+- Bump @react-native-windows/fs to v0.0.0-canary.66
+- Bump @rnw-scripts/just-task to v2.3.54
+
+## 0.0.0-canary.121
+
+Tue, 15 Jul 2025 05:27:19 GMT
+
+### Changes
+
+- Removed uneeded `@azure/core-auth` dependency (jthysell@microsoft.com)
 
 ## 0.0.0-canary.120
 

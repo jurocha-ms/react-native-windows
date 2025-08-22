@@ -14,6 +14,7 @@ export interface InitOptions {
   overwrite?: boolean;
   telemetry?: boolean;
   list?: boolean;
+  prompt?: boolean;
 }
 
 export const initOptions: CommandOption[] = [
@@ -24,7 +25,7 @@ export const initOptions: CommandOption[] = [
   {
     name: '--template [string]',
     description: 'Specify the template to use',
-    default: 'cpp-app',
+    default: 'old/uwp-cpp-app',
   },
   {
     name: '--name [string]',
@@ -51,5 +52,9 @@ export const initOptions: CommandOption[] = [
     name: '--list',
     description:
       'Shows a list with all available templates with their descriptions.',
+  },
+  {
+    name: '--no-prompt',
+    description: 'Skip any interactive prompts and use default choices.',
   },
 ];

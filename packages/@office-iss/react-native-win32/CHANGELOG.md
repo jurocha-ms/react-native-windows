@@ -1,8 +1,59 @@
 # Change Log - @office-iss/react-native-win32
 
-<!-- This log was last generated on Fri, 30 May 2025 05:24:59 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 26 Jul 2025 05:26:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.294
+
+Sat, 26 Jul 2025 05:26:13 GMT
+
+### Changes
+
+- Integrate RN Nightly Build 0.80.0-nightly-20250506-3ac16dd6a (54227869+anupriya13@users.noreply.github.com)
+
+## 0.0.0-canary.293
+
+Thu, 17 Jul 2025 05:27:00 GMT
+
+### Changes
+
+- Integrate RN Nightly Build 0.80.0-nightly-20250428-9efcdc091 (10109130+sharath2727@users.noreply.github.com)
+- Bump @rnw-scripts/just-task to v2.3.54
+- Bump react-native-platform-override to v1.9.56
+
+## 0.0.0-canary.292
+
+Thu, 03 Jul 2025 05:24:24 GMT
+
+### Changes
+
+- intergrate rn 0.80.0-nightly-20250414-70cdf12c4 (satkh@microsoft.com)
+
+## 0.0.0-canary.291
+
+Sat, 21 Jun 2025 05:21:48 GMT
+
+### Changes
+
+- Remove usage of Animated in LogBox (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.290
+
+Fri, 20 Jun 2025 05:21:53 GMT
+
+### Changes
+
+- Integrate RN Nightly Build 0.80.0-nightly-20250331-398ac1f71 (kvineeth@microsoft.com)
+
+## 0.0.0-canary.289
+
+Thu, 19 Jun 2025 17:16:23 GMT
+
+### Changes
+
+- Integrate RN Nightly Build 0.80.0-nightly-20250317-fc7385c1e (hmalothu@microsoft.com)
+- Update to @types/react 19 (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.0.0-canary.288
 

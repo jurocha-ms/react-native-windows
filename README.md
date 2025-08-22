@@ -1,10 +1,10 @@
-![Hero Image with Logo](https://github.com/microsoft/react-native-windows/raw/main/.github/hero2.png)
+![Hero Image with Logo](https://github.com/microsoft/react-native-windows/raw/main/.github/hero3.png)
 
 <h1 align="center"> React Native for Windows </h1>
 
 <p align="center">
   <a href="https://twitter.com/intent/follow?&screen_name=ReactNativeMSFT">
-    <img src="https://img.shields.io/twitter/follow/windowsui.svg?label=Follow ReactNativeMSFT on X" alt="Follow @windowsui" />
+    <img src="https://img.shields.io/twitter/follow/ReactNativeMSFT?style=for-the-badge&logo=X&labelColor=black&color=white" alt="Follow @ReactNativeMSFT" />
   </a>
 </p>
 

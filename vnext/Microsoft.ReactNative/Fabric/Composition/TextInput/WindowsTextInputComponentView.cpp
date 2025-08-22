@@ -16,6 +16,7 @@
 #include <winrt/Microsoft.UI.Input.h>
 #include <winrt/Windows.System.h>
 #include <winrt/Windows.UI.h>
+#include "../Composition.Input.h"
 #include "../CompositionHelpers.h"
 #include "../RootComponentView.h"
 #include "JSValueReader.h"
@@ -213,15 +214,14 @@ struct CompTextHost : public winrt::implements<CompTextHost, ITextHost> {
 
   //@cmember Get mouse capture
   void TxSetCapture(BOOL fCapture) override {
-    // assert(false);
-    // TODO capture?
-    /*
+    auto mousePointer = winrt::make<winrt::Microsoft::ReactNative::Composition::Input::implementation::Pointer>(
+        winrt::Microsoft::ReactNative::Composition::Input::PointerDeviceType::Mouse, 1 /* 1 is Mouse PointerId*/);
+
     if (fCapture) {
-      ::SetCapture(m_hwndHost);
+      m_outer->CapturePointer(mousePointer);
     } else {
-      ::ReleaseCapture();
+      m_outer->ReleasePointerCapture(mousePointer);
     }
-    */
   }
 
   //@cmember Set the focus to the text window
@@ -759,6 +759,24 @@ void WindowsTextInputComponentView::OnPointerReleased(
     auto hr = m_textServices->TxSendMessage(msg, static_cast<WPARAM>(wParam), static_cast<LPARAM>(lParam), &lresult);
     args.Handled(hr != S_FALSE);
   }
+
+  // Emits the OnPressOut event
+  if (m_eventEmitter && !m_comingFromJS) {
+    auto emitter = std::static_pointer_cast<const facebook::react::WindowsTextInputEventEmitter>(m_eventEmitter);
+    float offsetX = position.X - m_layoutMetrics.frame.origin.x;
+    float offsetY = position.Y - m_layoutMetrics.frame.origin.y;
+    float neutralX = m_layoutMetrics.frame.origin.x;
+    float neutralY = m_layoutMetrics.frame.origin.y;
+
+    facebook::react::GestureResponderEvent pressOutArgs;
+    pressOutArgs.target = m_tag;
+    pressOutArgs.pagePoint = {position.X, position.Y};
+    pressOutArgs.offsetPoint = {offsetX, offsetY}; //{LocationX,LocationY}
+    pressOutArgs.timestamp = static_cast<double>(pp.Timestamp()) / 1000.0;
+    pressOutArgs.identifier = pp.PointerId();
+
+    emitter->onPressOut(pressOutArgs);
+  }
 }
 
 void WindowsTextInputComponentView::OnPointerMoved(
@@ -793,6 +811,29 @@ void WindowsTextInputComponentView::OnPointerMoved(
       DVASPECT_CONTENT, -1, nullptr, nullptr, nullptr, nullptr, nullptr, ptContainer.x, ptContainer.y);
 }
 
+void WindowsTextInputComponentView::OnPointerWheelChanged(
+    const winrt::Microsoft::ReactNative::Composition::Input::PointerRoutedEventArgs &args) noexcept {
+  if (windowsTextInputProps().scrollEnabled && windowsTextInputProps().multiline) {
+    auto pointerPointProperties = args.GetCurrentPoint(-1).Properties();
+
+    auto delta = static_cast<float>(pointerPointProperties.MouseWheelDelta());
+
+    if (m_textServices && !pointerPointProperties.IsHorizontalMouseWheel()) {
+      // Vertical scrolling
+      if (delta > 0) {
+        m_textServices->TxSendMessage(WM_VSCROLL, SB_LINEUP, 0, nullptr);
+      } else {
+        m_textServices->TxSendMessage(WM_VSCROLL, SB_LINEDOWN, 0, nullptr);
+      }
+      args.Handled(true);
+    }
+    // Emit the onScroll event
+    EmitOnScrollEvent();
+
+    // We don't support horizontal scrolling yet cause it is not implemented in Android/IOS
+  }
+  Super::OnPointerWheelChanged(args);
+}
 void WindowsTextInputComponentView::OnKeyDown(
     const winrt::Microsoft::ReactNative::Composition::Input::KeyRoutedEventArgs &args) noexcept {
   // Do not forward tab keys into the TextInput, since we want that to do the tab loop instead.  This aligns with WinUI
@@ -818,7 +859,6 @@ void WindowsTextInputComponentView::OnKeyDown(
       args.Handled(true);
     }
   }
-
   Super::OnKeyDown(args);
 }
 
@@ -848,7 +888,6 @@ void WindowsTextInputComponentView::OnKeyUp(
       args.Handled(true);
     }
   }
-
   Super::OnKeyUp(args);
 }
 
@@ -1062,7 +1101,10 @@ void WindowsTextInputComponentView::updateProps(
       oldTextInputProps.textAttributes.fontWeight != newTextInputProps.textAttributes.fontWeight ||
       !facebook::react::floatEquality(
           oldTextInputProps.textAttributes.letterSpacing, newTextInputProps.textAttributes.letterSpacing) ||
-      oldTextInputProps.textAttributes.fontFamily != newTextInputProps.textAttributes.fontFamily) {
+      oldTextInputProps.textAttributes.fontFamily != newTextInputProps.textAttributes.fontFamily ||
+      !facebook::react::floatEquality(
+          oldTextInputProps.textAttributes.maxFontSizeMultiplier,
+          newTextInputProps.textAttributes.maxFontSizeMultiplier)) {
     m_propBitsMask |= TXTBIT_CHARFORMATCHANGE;
     m_propBits |= TXTBIT_CHARFORMATCHANGE;
   }
@@ -1229,6 +1271,49 @@ void WindowsTextInputComponentView::updateLayoutMetrics(
   m_imgHeight = newHeight;
 }
 
+std::pair<float, float> WindowsTextInputComponentView::GetContentSize() const noexcept {
+  if (!m_textServices)
+    return {0.0f, 0.0f};
+
+  // Get a device context for measurement
+  HDC hdc = GetDC(nullptr);
+  if (!hdc)
+    return {0.0f, 0.0f};
+
+  // Use the layout width as the constraint (always multiline)
+  float availableWidth = m_layoutMetrics.frame.size.width;
+  float scale = m_layoutMetrics.pointScaleFactor;
+  float dpi = m_layoutMetrics.pointScaleFactor * GetDpiForSystem();
+  constexpr float HIMETRIC_PER_INCH = 2540.0f;
+
+  SIZE extentHimetric = {
+      static_cast<LONG>(availableWidth * scale * HIMETRIC_PER_INCH / dpi),
+      static_cast<LONG>(std::numeric_limits<LONG>::max() * HIMETRIC_PER_INCH / dpi)};
+
+  SIZE naturalSize = {0, 0};
+
+  HRESULT hr = m_textServices->TxGetNaturalSize(
+      DVASPECT_CONTENT,
+      hdc,
+      nullptr,
+      nullptr,
+      static_cast<DWORD>(TXTNS_FITTOCONTENTWSP),
+      reinterpret_cast<SIZEL *>(&extentHimetric),
+      &naturalSize.cx,
+      &naturalSize.cy);
+
+  ReleaseDC(nullptr, hdc);
+
+  if (FAILED(hr)) {
+    return {0.0f, 0.0f};
+  }
+
+  float contentWidth = static_cast<float>(naturalSize.cx) / scale;
+  float contentHeight = static_cast<float>(naturalSize.cy) / scale;
+
+  return {contentWidth, contentHeight};
+}
+
 // When we are notified by RichEdit that the text changed, we need to notify JS
 void WindowsTextInputComponentView::OnTextUpdated() noexcept {
   auto data = m_state->getData();
@@ -1247,6 +1332,13 @@ void WindowsTextInputComponentView::OnTextUpdated() noexcept {
     onChangeArgs.text = GetTextFromRichEdit();
     onChangeArgs.eventCount = ++m_nativeEventCount;
     emitter->onChange(onChangeArgs);
+    if (windowsTextInputProps().multiline) {
+      auto [contentWidth, contentHeight] = GetContentSize();
+      facebook::react::WindowsTextInputEventEmitter::OnContentSizeChange onContentSizeChangeArgs;
+      onContentSizeChangeArgs.contentSize.width = contentWidth;
+      onContentSizeChangeArgs.contentSize.height = contentHeight;
+      emitter->onContentSizeChange(onContentSizeChangeArgs);
+    }
   }
 
   if (UiaClientsAreListening()) {
@@ -1254,6 +1346,22 @@ void WindowsTextInputComponentView::OnTextUpdated() noexcept {
     winrt::Microsoft::ReactNative::implementation::UpdateUiaProperty(
         EnsureUiaProvider(), UIA_ValueValuePropertyId, text, text);
   }
+}
+
+void WindowsTextInputComponentView::EmitOnScrollEvent() noexcept {
+  if (!windowsTextInputProps().scrollEnabled || !m_eventEmitter || m_comingFromJS || !m_textServices) {
+    return;
+  }
+  LONG hMin, hMax, hPos, hPage;
+  LONG vMin, vMax, vPos, vPage;
+  BOOL hEnabled, vEnabled;
+  winrt::check_hresult(m_textServices->TxGetHScroll(&hMin, &hMax, &hPos, &hPage, &hEnabled));
+  winrt::check_hresult(m_textServices->TxGetVScroll(&vMin, &vMax, &vPos, &vPage, &vEnabled));
+  facebook::react::Point offset;
+  offset.x = static_cast<float>(hPos);
+  offset.y = static_cast<float>(vPos);
+  auto emitter = std::static_pointer_cast<const facebook::react::WindowsTextInputEventEmitter>(m_eventEmitter);
+  emitter->onScroll(offset);
 }
 
 void WindowsTextInputComponentView::OnSelectionChanged(LONG start, LONG end) noexcept {
@@ -1321,6 +1429,13 @@ void WindowsTextInputComponentView::onMounted() noexcept {
     m_propBits |= TXTBIT_CHARFORMATCHANGE;
   }
   InternalFinalize();
+
+  // Handle autoFocus property - focus the component when mounted if autoFocus is true
+  if (windowsTextInputProps().autoFocus) {
+    if (auto root = rootComponentView()) {
+      root->TrySetFocusedComponent(*get_strong(), winrt::Microsoft::ReactNative::FocusNavigationDirection::None);
+    }
+  }
 }
 
 std::optional<std::string> WindowsTextInputComponentView::getAccessiblityValue() noexcept {
@@ -1365,9 +1480,15 @@ void WindowsTextInputComponentView::UpdateCharFormat() noexcept {
 
   // set font size -- 15 to convert twips to pt
   const auto &props = windowsTextInputProps();
-  float fontSize = m_fontSizeMultiplier *
+  float fontSize =
       (std::isnan(props.textAttributes.fontSize) ? facebook::react::TextAttributes::defaultTextAttributes().fontSize
                                                  : props.textAttributes.fontSize);
+
+  // Apply maxFontSizeMultiplier if specified
+  auto maxFontSizeMultiplier = windowsTextInputProps().textAttributes.maxFontSizeMultiplier;
+  fontSize *=
+      (maxFontSizeMultiplier >= 1.0f) ? std::min(maxFontSizeMultiplier, m_fontSizeMultiplier) : m_fontSizeMultiplier;
+
   // TODO get fontSize from props.textAttributes, or defaultTextAttributes, or fragment?
   cfNew.dwMask |= CFM_SIZE;
   cfNew.yHeight = static_cast<LONG>(fontSize * 15);

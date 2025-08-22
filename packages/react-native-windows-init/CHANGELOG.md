@@ -1,8 +1,69 @@
 # Change Log - react-native-windows-init
 
-<!-- This log was last generated on Fri, 30 May 2025 05:24:59 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 20 Aug 2025 05:26:05 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.4.76
+
+Wed, 20 Aug 2025 05:26:05 GMT
+
+### Patches
+
+- Bump @react-native-windows/telemetry to v0.0.0-canary.123
+- Bump @react-native-windows/cli to v0.0.0-canary.272
+
+## 1.4.75
+
+Wed, 06 Aug 2025 05:28:00 GMT
+
+### Patches
+
+- Bump @react-native-windows/cli to v0.0.0-canary.271
+
+## 1.4.74
+
+Fri, 25 Jul 2025 05:27:20 GMT
+
+### Patches
+
+- Bump @react-native-windows/cli to v0.0.0-canary.270
+
+## 1.4.73
+
+Thu, 17 Jul 2025 05:27:01 GMT
+
+### Patches
+
+- Bump @react-native-windows/fs to v0.0.0-canary.66
+- Bump @react-native-windows/telemetry to v0.0.0-canary.122
+- Bump @react-native-windows/cli to v0.0.0-canary.269
+- Bump @rnw-scripts/just-task to v2.3.54
+
+## 1.4.72
+
+Tue, 15 Jul 2025 05:27:20 GMT
+
+### Patches
+
+- Bump @react-native-windows/telemetry to v0.0.0-canary.121
+- Bump @react-native-windows/cli to v0.0.0-canary.268
+
+## 1.4.71
+
+Fri, 20 Jun 2025 05:21:54 GMT
+
+### Patches
+
+- Bump @react-native-windows/cli to v0.0.0-canary.267
+
+## 1.4.70
+
+Thu, 19 Jun 2025 17:16:28 GMT
+
+### Patches
+
+- Bump @react-native-windows/cli to v0.0.0-canary.266
 
 ## 1.4.69
 

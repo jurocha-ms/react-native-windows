@@ -819,6 +819,22 @@ void ComponentView::updateAccessibilityProps(
       oldViewProps.accessibilityItemType,
       newViewProps.accessibilityItemType);
 
+  winrt::Microsoft::ReactNative::implementation::UpdateUiaProperty(
+      EnsureUiaProvider(),
+      UIA_FullDescriptionPropertyId,
+      oldViewProps.accessibilityDescription,
+      newViewProps.accessibilityDescription);
+
+  winrt::Microsoft::ReactNative::implementation::UpdateUiaProperty(
+      EnsureUiaProvider(),
+      UIA_ValueValuePropertyId,
+      oldViewProps.accessibilityValue.text,
+      newViewProps.accessibilityValue.text);
+
+  // Handle annotation properties with single call
+  winrt::Microsoft::ReactNative::implementation::UpdateUiaPropertiesForAnnotation(
+      EnsureUiaProvider(), oldViewProps.accessibilityAnnotation, newViewProps.accessibilityAnnotation);
+
   if ((oldViewProps.accessibilityState.has_value() && oldViewProps.accessibilityState->selected.has_value()) !=
       ((newViewProps.accessibilityState.has_value() && newViewProps.accessibilityState->selected.has_value()))) {
     auto compProvider =

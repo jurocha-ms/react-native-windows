@@ -1,8 +1,73 @@
 # Change Log - @react-native-windows/cli
 
-<!-- This log was last generated on Fri, 30 May 2025 05:25:00 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 20 Aug 2025 05:26:04 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.272
+
+Wed, 20 Aug 2025 05:26:04 GMT
+
+### Changes
+
+- Update CLI to show static warning for old architecture in run-windows and interactive prompt for init-windows (#15029) (54227869+anupriya13@users.noreply.github.com)
+- Bump @react-native-windows/telemetry to v0.0.0-canary.123
+
+## 0.0.0-canary.271
+
+Wed, 06 Aug 2025 05:27:59 GMT
+
+### Changes
+
+- Revert "Change `init-windows` default new app template to New Architecture (#…" (54227869+anupriya13@users.noreply.github.com)
+- [BugFix] Open Init windows telemetry not capturing the true default template (54227869+anupriya13@users.noreply.github.com)
+
+## 0.0.0-canary.270
+
+Fri, 25 Jul 2025 05:27:19 GMT
+
+### Changes
+
+- Enable Console Logging for playground Apps (satkh@microsoft.com)
+
+## 0.0.0-canary.269
+
+Thu, 17 Jul 2025 05:27:01 GMT
+
+### Changes
+
+- Bump @react-native-windows/codegen to v0.0.0-canary.124
+- Bump @react-native-windows/fs to v0.0.0-canary.66
+- Bump @react-native-windows/package-utils to v0.0.0-canary.92
+- Bump @react-native-windows/telemetry to v0.0.0-canary.122
+- Bump @rnw-scripts/just-task to v2.3.54
+
+## 0.0.0-canary.268
+
+Tue, 15 Jul 2025 05:27:20 GMT
+
+### Changes
+
+- Bump @react-native-windows/telemetry to v0.0.0-canary.121
+
+## 0.0.0-canary.267
+
+Fri, 20 Jun 2025 05:21:53 GMT
+
+### Changes
+
+- Integrate RN Nightly Build 0.80.0-nightly-20250331-398ac1f71 (kvineeth@microsoft.com)
+
+## 0.0.0-canary.266
+
+Thu, 19 Jun 2025 17:16:24 GMT
+
+### Changes
+
+- Remove rnw/cli dependency on rnc/cli (30809111+acoates-ms@users.noreply.github.com)
+- Add warning to CLI commands about using the old architecture (jthysell@microsoft.com)
+- Change `init-windows` default new app template to New Architecture (jthysell@microsoft.com)
+- Integrate RN Nightly Build 0.80.0-nightly-20250317-fc7385c1e (34109996+chiaramooney@users.noreply.github.com)
 
 ## 0.0.0-canary.265
 
