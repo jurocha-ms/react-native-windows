@@ -51,6 +51,11 @@ app.Map("/", async context =>
   }
 });
 
+app.MapGet(
+  "/rnw/http/hextext/{Length}",
+  Microsoft.React.Test.HttpTests.ArbitraryLengthHexText
+  );
+
 app.Map(
   "/rnw/rntester/websocketbinarytest",
   Facebook.React.Test.RNTesterIntegrationTests.WebSocketBinaryTest
