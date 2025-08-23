@@ -26,6 +26,7 @@ namespace http = boost::beast::http;
 using Networking::IHttpResource;
 using Networking::OriginPolicy;
 using std::make_shared;
+using std::once_flag;
 using std::promise;
 using std::string;
 using std::vector;
@@ -34,6 +35,14 @@ using Test::DynamicResponse;
 using Test::EmptyResponse;
 using Test::HttpServer;
 using Test::ResponseWrapper;
+
+namespace {
+
+void SetPromise(once_flag &flag, promise<void> &prom) {
+  std::call_once(flag, [&prom]() { prom.set_value(); });
+}
+
+}
 
 namespace Microsoft::React::Test {
 
@@ -722,6 +731,35 @@ TEST_CLASS (HttpResourceIntegrationTest) {
     Assert::AreEqual({}, error);
     Assert::AreEqual(200, statusCode);
     Assert::AreEqual({"123444"}, result);
+  }
+
+  TEST_METHOD(LargeDownloadSucceeeds)
+  {
+    size_t contentLength;
+    string errorMessage;
+    promise<void> donePromise;
+    once_flag doneFlag;
+    auto resource = IHttpResource::Make();
+
+    resource->SetOnError([&donePromise, &doneFlag, &errorMessage](int64_t, string &&message, bool) {
+      errorMessage = std::move(message);
+
+      SetPromise(doneFlag, donePromise);
+    });
+    resource->SetOnData(
+        [&donePromise, &doneFlag, &contentLength](int64_t, string &&content) {
+      contentLength = content.length();
+
+      SetPromise(doneFlag, donePromise);
+    });
+
+    resource->SendRequest(
+        "GET", "http://localhost:5555/rnw/http/hextext/4194305", 0, {}, {}, "text", false, 0, false, [](int64_t) {});
+
+    donePromise.get_future().wait();
+
+    Assert::AreEqual({}, errorMessage);
+    Assert::AreEqual(4194305 /* 4MiB + 1 */, static_cast<int>(contentLength));
   }
 };
 
