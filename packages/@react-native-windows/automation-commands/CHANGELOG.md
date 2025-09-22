@@ -1,8 +1,84 @@
 # Change Log - @react-native-windows/automation-commands
 
-<!-- This log was last generated on Fri, 15 Aug 2025 17:57:23 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 19 Sep 2025 05:29:14 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.436
+
+Fri, 19 Sep 2025 05:29:14 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.333
+
+## 0.1.435
+
+Thu, 18 Sep 2025 05:34:35 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.332
+
+## 0.1.434
+
+Wed, 17 Sep 2025 05:27:17 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.331
+
+## 0.1.433
+
+Wed, 10 Sep 2025 05:26:21 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.330
+
+## 0.1.432
+
+Tue, 09 Sep 2025 05:26:26 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.329
+
+## 0.1.431
+
+Tue, 02 Sep 2025 05:24:07 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.328
+
+## 0.1.430
+
+Wed, 27 Aug 2025 05:26:00 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.327
+
+## 0.1.429
+
+Sat, 23 Aug 2025 05:30:40 GMT
+
+### Patches
+
+- Upgrade to node22 (10109130+sharath2727@users.noreply.github.com)
+- Bump @react-native-windows/automation-channel to v0.12.326
+- Bump @rnw-scripts/eslint-config to v1.2.37
+- Bump @rnw-scripts/just-task to v2.3.55
+- Bump @rnw-scripts/ts-config to v2.0.6
+
+## 0.1.428
+
+Wed, 20 Aug 2025 05:26:05 GMT
+
+### Patches
+
+- Bump @react-native-windows/automation-channel to v0.12.325
 
 ## 0.1.427
 

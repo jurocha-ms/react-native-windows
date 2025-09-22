@@ -1,8 +1,94 @@
 # Change Log - react-native-windows
 
-<!-- This log was last generated on Fri, 15 Aug 2025 17:57:23 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 19 Sep 2025 05:29:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.993
+
+Fri, 19 Sep 2025 05:29:13 GMT
+
+### Changes
+
+- Removing Platform brush instead using proper caret brush (nitchaudhary@microsoft.com)
+- adding nullptr check before destroyShadow calls (protikbiswas100@microsoft.com)
+- fix (74712637+iamAbhi-916@users.noreply.github.com)
+- Bump react-native-platform-override to v1.9.58
+
+## 0.0.0-canary.992
+
+Thu, 18 Sep 2025 05:34:35 GMT
+
+### Changes
+
+- Remove legacy cxxmodules (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.991
+
+Wed, 17 Sep 2025 05:27:16 GMT
+
+### Changes
+
+- Upgrade dotnet version (10109130+sharath2727@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.276
+
+## 0.0.0-canary.990
+
+Wed, 10 Sep 2025 05:26:20 GMT
+
+### Changes
+
+- Fix deadlock in ReactInstanceWin::DetachRootView by replacing sync call with async (copilot@github.com)
+- Implement onMomentumScrollEnd and onMomentumScrollBegin for Fabric ScrollView (198982749+Copilot@users.noreply.github.com)
+
+## 0.0.0-canary.989
+
+Tue, 09 Sep 2025 05:26:26 GMT
+
+### Changes
+
+- adding UIA event handler changes for navigator (protikbiswas100@microsoft.com)
+
+## 0.0.0-canary.988
+
+Tue, 02 Sep 2025 05:24:07 GMT
+
+### Changes
+
+- [Fabric] Fix for Text and TextInput focus issue with screen readers. (kvineeth@microsoft.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.275
+
+## 0.0.0-canary.987
+
+Wed, 27 Aug 2025 05:26:00 GMT
+
+### Changes
+
+- Reapply "Change `init-windows` default new app template to New Architecture" (#14985) (54227869+anupriya13@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.274
+
+## 0.0.0-canary.986
+
+Sat, 23 Aug 2025 05:30:45 GMT
+
+### Changes
+
+- Upgrade to node22 (10109130+sharath2727@users.noreply.github.com)
+- Bump JSI to use latest version 20 (74712637+iamAbhi-916@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.273
+- Bump @react-native-windows/codegen to v0.0.0-canary.125
+- Bump @rnw-scripts/eslint-config to v1.2.37
+- Bump @rnw-scripts/jest-out-of-tree-snapshot-resolver to v1.1.41
+- Bump @rnw-scripts/just-task to v2.3.55
+- Bump react-native-platform-override to v1.9.57
+
+## 0.0.0-canary.985
+
+Wed, 20 Aug 2025 05:26:05 GMT
+
+### Changes
+
+- Bump @react-native-windows/cli to v0.0.0-canary.272
 
 ## 0.0.0-canary.984
 
