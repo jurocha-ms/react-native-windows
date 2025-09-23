@@ -122,6 +122,7 @@ IAsyncOperation<HttpRequestMessage> WinRTHttpResource::CreateRequest(
   HttpMediaTypeHeaderValue contentType{nullptr};
   string contentEncoding;
   string contentLength;
+  string contentRange;
 
   // Headers are generally case-insensitive
   // https://www.ietf.org/rfc/rfc2616.txt section 4.2
@@ -141,6 +142,16 @@ IAsyncOperation<HttpRequestMessage> WinRTHttpResource::CreateRequest(
       contentEncoding = value;
     } else if (boost::iequals(name.c_str(), "Content-Length")) {
       contentLength = value;
+    } else if (boost::iequals(name.c_str(), "Content-Range")) {
+      //contentRange = value;
+      // ALWAYS fails.
+      bool success = request.Headers().TryAppendWithoutValidation(to_hstring(name), to_hstring(value));
+      if (!success) {
+        if (self->m_onError) {
+          self->m_onError(reqArgs->RequestId, "Failed to append Content-Range", false);
+        }
+        co_return nullptr;
+      }
     } else if (boost::iequals(name.c_str(), "Authorization")) {
       bool success = request.Headers().TryAppendWithoutValidation(to_hstring(name), to_hstring(value));
       if (!success) {
@@ -258,6 +269,11 @@ IAsyncOperation<HttpRequestMessage> WinRTHttpResource::CreateRequest(
 
         co_return nullptr;
       }
+    }
+
+    // #OfficeDev/office-js:5822 - WinInet rejects 'Content-Range' header in PUT requests
+    if (!contentRange.empty() && method == HttpMethod::Put()) {
+      //TODO: 
     }
 
     request.Content(content);

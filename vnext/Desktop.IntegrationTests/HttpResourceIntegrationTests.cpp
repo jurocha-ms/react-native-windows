@@ -754,7 +754,16 @@ TEST_CLASS (HttpResourceIntegrationTest) {
     });
 
     resource->SendRequest(
-        "GET", "http://localhost:5555/rnw/http/hextext/4194305", 0, {}, {}, "text", false, 0, false, [](int64_t) {});
+        "PUT",
+        "http://localhost:5555/rnw/http/hextext/4194305",
+        0,
+        {{"Content-Range", "bytes 0-1023/*"}},
+        {},
+        "text",
+        false,
+        0,
+        false,
+        [](int64_t) {});
 
     donePromise.get_future().wait();
 

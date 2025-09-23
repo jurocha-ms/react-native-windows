@@ -51,7 +51,7 @@ app.Map("/", async context =>
   }
 });
 
-app.MapGet(
+app.MapPut(
   "/rnw/http/hextext/{Length}",
   Microsoft.React.Test.HttpTests.ArbitraryLengthHexText
   );
