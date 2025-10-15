@@ -21,6 +21,7 @@ namespace Microsoft.Office.Test
       response.StatusCode = 200;
 
       var request = context.Request;
+      Console.WriteLine($"With Content-Type [{request.ContentType}]");
 
       var resBody = "";
       if (request.ContentType == "multipart/form-data")

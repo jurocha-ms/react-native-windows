@@ -203,12 +203,16 @@ IAsyncOperation<HttpRequestMessage> WinRTHttpResource::CreateRequest(
       auto stream = co_await file.OpenReadAsync();
       content = HttpStreamContent{std::move(stream)};
     } else if (data.find("formData") != data.cend()) {
+      // We do NOT seem to support application/x-www-form-urlencoded; only multipart/form-data
+      // See  https://learn.microsoft.com/en-us/uwp/api/windows.web.http.httpmultipartformdatacontent?view=winrt-26100
+      //      https://learn.microsoft.com/en-us/uwp/api/windows.web.http.httpformurlencodedcontent?view=winrt-26100
       winrt::Windows::Web::Http::HttpMultipartFormDataContent multiPartContent;
       auto &formData = data["formData"].AsArray();
 
       // #6046 -  Overwriting WinRT's HttpMultipartFormDataContent implicit Content-Type clears the generated boundary
       contentType = nullptr;
 
+      // #OfficeDev/office-js/5869 - Requests with empty multipart/form-data yield a NULL contentType, which never gets sent
       for (auto &formDataPart : formData) {
         IHttpContent formContent{nullptr};
         auto &formDataPartObj = formDataPart.AsObject();

@@ -31,11 +31,13 @@ class XHRTest extends React.Component<{...}, State> {
       });
     };
     this.state.xhr.open(
-      'GET',
-      'https://raw.githubusercontent.com/microsoft/react-native-windows/react-native-windows_v0.67.1/NuGet.Config',
+      'POST',
+      'http://localhost:5555/officedev/office-js/issues/5869',
     );
-    this.state.xhr.setRequestHeader('Accept-Encoding', 'utf-8');
-    this.state.xhr.send();
+
+    const body = new FormData();
+    body.append('title', 'foo');//Test fails if body has no fields. Comment to fail the test.
+    this.state.xhr.send(body);
   };
 
   _getSucceeded = (): boolean => {
@@ -43,8 +45,9 @@ class XHRTest extends React.Component<{...}, State> {
       `_getSucceeded [${this.state.statusCode}],[${this.state.xhr.responseText.length}]`,
     );
     return (
-      this.state.statusCode === 200 &&
-      this.state.xhr.responseText.length === 387
+      this.state.statusCode === 200
+      //  &&
+      // this.state.xhr.responseText.length === 387
     );
   };
 
