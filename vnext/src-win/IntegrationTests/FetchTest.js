@@ -15,32 +15,34 @@ const {AppRegistry, View} = ReactNative;
 const {TestModule} = ReactNative.NativeModules;
 
 const uri =
-  'https://raw.githubusercontent.com/microsoft/react-native-windows/main/.yarnrc.yml';
-const expectedContent = 'enableScripts: false';
+  'https://jsonplaceholder.typicode.com/posts/1';
+const expectedContent =
+  '{\n' +
+  '  "userId": 1,\n' +
+  '  "id": 1,\n' +
+  '  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",\n' +
+  '  "body": "quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto"\n' +
+  '}';
 
 type State = {
-  uri: string,
-  expected: string,
   content: string,
 };
 
 class FetchTest extends React.Component<{...}, State> {
   state: State = {
-    uri: 'https://raw.githubusercontent.com/microsoft/react-native-windows/main/.yarnrc.yml',
-    expected: 'enableScripts: false',
     content: '',
   };
 
   async componentDidMount() {
     const response = await fetch(uri);
+    if (! response.ok) {
+      TestModule.markTestPassed(false);
+      return;
+    }
     const text = await response.text();
     this.setState({content: text});
 
-    if (this.state.content === expectedContent) {
-      TestModule.markTestPassed(true);
-    } else {
-      TestModule.markTestPassed(false);
-    }
+    TestModule.markTestPassed(this.state.content === expectedContent);
   }
 
   render(): React.Node {
