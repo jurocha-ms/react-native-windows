@@ -34,7 +34,10 @@ class FetchTest extends React.Component<{...}, State> {
   };
 
   async componentDidMount() {
-    const response = await fetch(uri);
+    const headers = {
+      Authorization: "test",
+    };
+    const response = await fetch(uri, {headers});
     if (! response.ok) {
       TestModule.markTestPassed(false);
       return;
