@@ -1,0 +1,112 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="ARM64EC" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/PropertySheets/">
+    <File Path="PropertySheets/Debug.props" />
+    <File Path="PropertySheets/React.Cpp.props" />
+    <File Path="PropertySheets/Release.props" />
+    <File Path="PropertySheets/Warnings.props" />
+    <File Path="PropertySheets/Win32.props" />
+    <File Path="PropertySheets/x64.props" />
+    <File Path="PropertySheets/x86.props" />
+  </Folder>
+  <Folder Name="/PropertySheets/Application/">
+    <File Path="PropertySheets/Application/Debug.props" />
+    <File Path="PropertySheets/Application/Release.props" />
+    <File Path="PropertySheets/Application/Win32.props" />
+    <File Path="PropertySheets/Application/x64.props" />
+    <File Path="PropertySheets/Application/x86.props" />
+  </Folder>
+  <Folder Name="/PropertySheets/DynamicLibrary/">
+    <File Path="PropertySheets/DynamicLibrary/Debug.props" />
+    <File Path="PropertySheets/DynamicLibrary/Release.props" />
+    <File Path="PropertySheets/DynamicLibrary/Win32.props" />
+    <File Path="PropertySheets/DynamicLibrary/x64.props" />
+    <File Path="PropertySheets/DynamicLibrary/x86.props" />
+  </Folder>
+  <Folder Name="/PropertySheets/StaticLibrary/">
+    <File Path="PropertySheets/StaticLibrary/Debug.props" />
+    <File Path="PropertySheets/StaticLibrary/Release.props" />
+    <File Path="PropertySheets/StaticLibrary/Win32.props" />
+    <File Path="PropertySheets/StaticLibrary/x64.props" />
+    <File Path="PropertySheets/StaticLibrary/x86.props" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="NuGet.Config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Third Party/" />
+  <Folder Name="/Third Party/Folly/">
+    <Project Path="Folly/Folly.vcxproj" />
+    <Project Path="FollyWin32/FollyWin32.vcxproj" />
+  </Folder>
+  <Folder Name="/Third Party/Mso/">
+    <Project Path="Mso.UnitTests/Mso.UnitTests.vcxproj">
+      <Platform Solution="*|ARM64" Project="Win32" />
+      <Build Solution="*|ARM64" Project="false" />
+      <Build Solution="*|ARM64EC" Project="false" />
+    </Project>
+    <Project Path="Mso/Mso.vcxitems" />
+  </Folder>
+  <Folder Name="/Third Party/ReactNative/">
+    <Project Path="ReactCommon.UnitTests/ReactCommon.UnitTests.vcxproj">
+      <Platform Solution="*|ARM64" Project="x64" />
+      <Platform Solution="*|x86" Project="x64" />
+      <Build Solution="*|ARM64" Project="false" />
+      <Build Solution="*|ARM64EC" Project="false" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+    <Project Path="ReactCommon/ReactCommon.vcxproj">
+      <BuildDependency Project="Folly/Folly.vcxproj" />
+      <BuildDependency Project="FollyWin32/FollyWin32.vcxproj" />
+    </Project>
+  </Folder>
+  <Project Path="Common/Common.vcxproj" />
+  <Project Path="Desktop.ABITests/React.Windows.Desktop.ABITests.vcxproj">
+    <Platform Solution="*|ARM64" Project="Win32" />
+    <Build Solution="*|ARM64" Project="false" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj">
+    <BuildDependency Project="Folly/Folly.vcxproj" />
+    <BuildDependency Project="FollyWin32/FollyWin32.vcxproj" />
+    <BuildDependency Project="ReactCommon/ReactCommon.vcxproj" />
+  </Project>
+  <Project Path="Desktop.IntegrationTests/React.Windows.Desktop.IntegrationTests.vcxproj">
+    <Platform Solution="*|ARM64" Project="Win32" />
+    <Build Solution="*|ARM64" Project="false" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="Desktop.Test.DLL/React.Windows.Desktop.Test.DLL.vcxproj">
+    <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="Desktop.UnitTests/React.Windows.Desktop.UnitTests.vcxproj">
+    <Platform Solution="*|ARM64" Project="Win32" />
+    <Build Solution="*|ARM64" Project="false" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="Desktop/React.Windows.Desktop.vcxproj" />
+  <Project Path="fmt/fmt.vcxproj">
+    <Deploy Solution="*|x86" />
+  </Project>
+  <Project Path="include/Include.vcxitems" />
+  <Project Path="IntegrationTests/React.Windows.IntegrationTests.vcxproj">
+    <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="Microsoft.ReactNative.Cxx/Microsoft.ReactNative.Cxx.vcxitems" />
+  <Project Path="Shared/Shared.vcxitems" />
+  <Project Path="Test/React.Windows.Test.vcxproj">
+    <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
+    <Build Solution="*|ARM64EC" Project="false" />
+  </Project>
+  <Project Path="TestWebsite/Microsoft.ReactNative.Test.Website.csproj" />
+</Solution>
