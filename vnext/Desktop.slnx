@@ -44,67 +44,67 @@
   </Folder>
   <Folder Name="/Third Party/" />
   <Folder Name="/Third Party/Folly/">
-    <Project Path="Folly/Folly.vcxproj" />
-    <Project Path="FollyWin32/FollyWin32.vcxproj" />
+    <Project Path="Folly/Folly.vcxproj" Id="a990658c-ce31-4bcc-976f-0fc6b1af693d" />
+    <Project Path="FollyWin32/FollyWin32.vcxproj" Id="74085f13-2dde-45e5-a0ca-927ac9d0b953" />
   </Folder>
   <Folder Name="/Third Party/Mso/">
-    <Project Path="Mso.UnitTests/Mso.UnitTests.vcxproj">
+    <Project Path="Mso.UnitTests/Mso.UnitTests.vcxproj" Id="1958ceaa-fbe0-44e3-8a99-90ad85531ffe">
       <Platform Solution="*|ARM64" Project="Win32" />
       <Build Solution="*|ARM64" Project="false" />
       <Build Solution="*|ARM64EC" Project="false" />
     </Project>
-    <Project Path="Mso/Mso.vcxitems" />
+    <Project Path="Mso/Mso.vcxitems" Id="84e05bfa-cbaf-4f0d-bfb6-4ce85742a57e" />
   </Folder>
   <Folder Name="/Third Party/ReactNative/">
-    <Project Path="ReactCommon.UnitTests/ReactCommon.UnitTests.vcxproj">
+    <Project Path="ReactCommon.UnitTests/ReactCommon.UnitTests.vcxproj" Id="b0941079-7441-4a69-868c-fe5ec62c2e9e">
       <Platform Solution="*|ARM64" Project="x64" />
       <Platform Solution="*|x86" Project="x64" />
       <Build Solution="*|ARM64" Project="false" />
       <Build Solution="*|ARM64EC" Project="false" />
       <Build Solution="*|x86" Project="false" />
     </Project>
-    <Project Path="ReactCommon/ReactCommon.vcxproj">
+    <Project Path="ReactCommon/ReactCommon.vcxproj" Id="a9d95a91-4db7-4f72-beb6-fe8a5c89bfbd">
       <BuildDependency Project="Folly/Folly.vcxproj" />
       <BuildDependency Project="FollyWin32/FollyWin32.vcxproj" />
     </Project>
   </Folder>
-  <Project Path="Common/Common.vcxproj" />
-  <Project Path="Desktop.ABITests/React.Windows.Desktop.ABITests.vcxproj">
+  <Project Path="Common/Common.vcxproj" Id="fca38f3c-7c73-4c47-be4e-32f77fa8538d" />
+  <Project Path="Desktop.ABITests/React.Windows.Desktop.ABITests.vcxproj" Id="44dced9b-9c4c-48fe-8545-0930192bbc16">
     <Platform Solution="*|ARM64" Project="Win32" />
     <Build Solution="*|ARM64" Project="false" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
-  <Project Path="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj">
+  <Project Path="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" Id="88bab0fa-e1ac-4da7-a30c-f91702a8eadb">
     <BuildDependency Project="Folly/Folly.vcxproj" />
     <BuildDependency Project="FollyWin32/FollyWin32.vcxproj" />
     <BuildDependency Project="ReactCommon/ReactCommon.vcxproj" />
   </Project>
-  <Project Path="Desktop.IntegrationTests/React.Windows.Desktop.IntegrationTests.vcxproj">
+  <Project Path="Desktop.IntegrationTests/React.Windows.Desktop.IntegrationTests.vcxproj" Id="e0d269b4-d7f0-4c4e-92cd-b2c06109a2bb">
     <Platform Solution="*|ARM64" Project="Win32" />
     <Build Solution="*|ARM64" Project="false" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
-  <Project Path="Desktop.Test.DLL/React.Windows.Desktop.Test.DLL.vcxproj">
+  <Project Path="Desktop.Test.DLL/React.Windows.Desktop.Test.DLL.vcxproj" Id="473fe8e8-26da-4b46-a7b3-7b4a758075d0">
     <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
-  <Project Path="Desktop.UnitTests/React.Windows.Desktop.UnitTests.vcxproj">
+  <Project Path="Desktop.UnitTests/React.Windows.Desktop.UnitTests.vcxproj" Id="96cd24dc-91c2-480a-bc26-ee2250da80d7">
     <Platform Solution="*|ARM64" Project="Win32" />
     <Build Solution="*|ARM64" Project="false" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
-  <Project Path="Desktop/React.Windows.Desktop.vcxproj" />
-  <Project Path="fmt/fmt.vcxproj">
+  <Project Path="Desktop/React.Windows.Desktop.vcxproj" Id="95048601-c3dc-475f-adf8-7c0c764c10d5" />
+  <Project Path="fmt/fmt.vcxproj" Id="14b93dc8-fd93-4a6d-81cb-8bc96644501c">
     <Deploy Solution="*|x86" />
   </Project>
-  <Project Path="include/Include.vcxitems" />
-  <Project Path="IntegrationTests/React.Windows.IntegrationTests.vcxproj">
+  <Project Path="include/Include.vcxitems" Id="ef074ba1-2d54-4d49-a28e-5e040b47cd2e" />
+  <Project Path="IntegrationTests/React.Windows.IntegrationTests.vcxproj" Id="700a84fd-f92a-43f1-8d06-b0e0745df9b5">
     <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
-  <Project Path="Microsoft.ReactNative.Cxx/Microsoft.ReactNative.Cxx.vcxitems" />
-  <Project Path="Shared/Shared.vcxitems" />
-  <Project Path="Test/React.Windows.Test.vcxproj">
+  <Project Path="Microsoft.ReactNative.Cxx/Microsoft.ReactNative.Cxx.vcxitems" Id="da8b35b3-da00-4b02-bde6-6a397b3fd46b" />
+  <Project Path="Shared/Shared.vcxitems" Id="2049dbe9-8d13-42c9-ae4b-413ae38fffd0" />
+  <Project Path="Test/React.Windows.Test.vcxproj" Id="cd0415c6-d908-4212-9481-49be41f58d27">
     <BuildDependency Project="Desktop.DLL/React.Windows.Desktop.DLL.vcxproj" />
     <Build Solution="*|ARM64EC" Project="false" />
   </Project>
