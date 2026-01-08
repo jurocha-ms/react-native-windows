@@ -1,8 +1,26 @@
 # Change Log - react-native-windows
 
-This log was last generated on Mon, 17 Nov 2025 16:33:43 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Dec 2025 16:29:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.74.50
+
+Mon, 01 Dec 2025 16:29:10 GMT
+
+### Patches
+
+- Assert on text input focus when no UIA tool running (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.74.49
+
+Mon, 24 Nov 2025 16:41:44 GMT
+
+### Patches
+
+- added check for double click on textInput component view connecting it to WM_LBUTTONDBLCLK (email not defined)
+- Fix OfficeReact.Win32 Nuget layout (vmorozov@microsoft.com)
+- Tooltip positioned incorrectly on non 100% scale factor (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.74.48
 
