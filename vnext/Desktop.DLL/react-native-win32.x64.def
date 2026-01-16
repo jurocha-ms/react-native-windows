@@ -182,3 +182,6 @@ YGUnitToString
 
 DllCanUnloadNow = WINRT_CanUnloadNow                    PRIVATE
 DllGetActivationFactory = WINRT_GetActivationFactory    PRIVATE
+
+?GetNamespace@ReactPropertyBagHelper@ReactNative@Microsoft@winrt@@SA?AUIReactPropertyNamespace@234@AEBUhstring@param@4@@Z
+?GetName@ReactPropertyBagHelper@ReactNative@Microsoft@winrt@@SA?AUIReactPropertyName@234@AEBUIReactPropertyNamespace@234@AEBUhstring@param@4@@Z
