@@ -5,4 +5,6 @@
 void Foo()
 {
 
+  winrt::Microsoft::ReactNative::ReactNativeHost m_host{};
+
 }
