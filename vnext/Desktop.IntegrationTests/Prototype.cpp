@@ -1,15 +1,8 @@
 //TODO: copyright
 
-#include <CppUnitTest.h>
+//#include <Microsoft.ReactNative/ReactHost/React.h>
 
-namespace Microsoft::React::Test {
+void Foo()
+{
 
-TEST_CLASS (PrototypeIntegrationTest) {
-
-  TEST_METHOD(Proto1)
-  {
-    //Create test react instance
-  }
-
-};
 }
