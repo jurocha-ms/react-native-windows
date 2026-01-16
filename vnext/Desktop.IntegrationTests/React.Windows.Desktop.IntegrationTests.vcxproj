@@ -85,10 +85,13 @@
         %(PreprocessorDefinitions)
       </PreprocessorDefinitions>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <!-- TODO: VERY HACKY -->
       <AdditionalIncludeDirectories>
         $(VCInstallDir)UnitTest\include;
         "$(ReactNativeWindowsDir)Microsoft.ReactNative";
+        "$(ReactNativeWindowsDir)Microsoft.ReactNative\ReactHost";
         "$(ReactNativeWindowsDir)\Shared\tracing";
+        "$(IntDir)\..\React.Windows.Desktop\Generated Files";
         %(AdditionalIncludeDirectories)
       </AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
@@ -138,11 +141,6 @@
     <ReferenceCopyLocalPaths Include="$(OutDir)\..\React.Windows.Desktop.DLL\react-native-win32.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="..\Microsoft.ReactNative\ReactNativeHost.idl" />
-    <Midl Include="..\Microsoft.ReactNative\IReactPackageProvider.idl" />
-    <Midl Include="..\Microsoft.ReactNative\RedBoxHandler.idl" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Modules\TestDevSettingsModule.h" />
     <ClInclude Include="Modules\TestImageLoaderModule.h" />
   </ItemGroup>
@@ -153,6 +151,9 @@
     <PackageReference Include="Microsoft.Windows.CppWinRT" Version="$(CppWinRTVersion)" PrivateAssets="all" />
     <PackageReference Include="$(V8PackageName)" Version="$(V8Version)" Condition="'$(UseV8)' == 'true'" />
   </ItemGroup>
+  <!-- <ItemGroup>
+    <Manifest Include="Application.manifest" />
+  </ItemGroup> -->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="Test">
     <Exec Command="$(OutDir)$(TargetFileName)" IgnoreStandardErrorWarningFormat="true" />

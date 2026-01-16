@@ -1,6 +1,6 @@
 //TODO: copyright
 
-//#include <Microsoft.ReactNative/ReactHost/React.h>
+#include <Microsoft.ReactNative/ReactHost/React.h>
 
 void Foo()
 {
