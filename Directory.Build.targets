@@ -105,6 +105,8 @@
         BaseOutDir;
         ReactNativeDir;
         ReactNativeWindowsDir;
+        RnwNewArch;
+        UseFabric;
         FollyDir;
         IncludeFabricInterface;
         UseFabric;
