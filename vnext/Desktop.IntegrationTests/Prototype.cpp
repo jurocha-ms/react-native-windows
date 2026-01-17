@@ -4,24 +4,43 @@
 
 #include <Microsoft.ReactNative/ReactHost/React.h>
 
+#include <Microsoft.ReactNative/IReactDispatcher.h>
+
 #include <future>
 
-winrt::Windows::Foundation::IAsyncOperation<bool> Foo()
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace msrn = winrt::Microsoft::ReactNative;
+
+struct TestUIDispatcher : public winrt::implements<TestUIDispatcher, msrn::IReactDispatcher>
 {
-  bool result = false;
-  winrt::Microsoft::ReactNative::ReactNativeHost host{};
-  auto settings = host.InstanceSettings();
-  //auto action = host.ReloadInstance();
+  TestUIDispatcher() = default;
 
-  //action.Completed([&result](auto const &task, winrt::Windows::Foundation::AsyncStatus status)
-  //{
-  //  result = true;
-  //});
-  co_await host.ReloadInstance();
-  result = true;
+  TestUIDispatcher(::Mso::DispatchQueue &&queue) : m_queue{std::move(queue)}
+  {
+    m_queue.Post([self = get_strong()]() noexcept
+    {
+      self->m_threadId = GetCurrentThreadId();
+    });
+  }
 
-  co_return result;
-}
+  bool HasThreadAccess()
+  {
+    return m_threadId == GetCurrentThreadId();
+  }
+
+  void Post(msrn::ReactDispatcherCallback const& callback)
+  {
+    m_queue.Post([callback]() noexcept
+    {
+      callback();
+    });
+  }
+
+private:
+  Mso::DispatchQueue m_queue;
+  DWORD m_threadId{0};
+};
 
 TEST_CLASS (Prototype) {
 
@@ -30,15 +49,19 @@ TEST_CLASS (Prototype) {
     bool succeeded = true;
 
     {
-      winrt::Microsoft::ReactNative::ReactNativeHost host{};
-      auto settings = host.InstanceSettings();
-      auto mainQueue = Mso::DispatchQueue::CurrentQueue();
+      msrn::IReactDispatcher dispatcher =
+          winrt::make<TestUIDispatcher>(Mso::DispatchQueue::MakeSerialQueue());
+
+      msrn::ReactNativeHost host{};
+
+      auto settings = host.InstanceSettings().Properties().Set(msrn::ReactDispatcherHelper::UIDispatcherProperty(), dispatcher);
+
       auto action = host.ReloadInstance();
 
       action.get();
     }
 
-    Microsoft::VisualStudio::CppUnitTestFramework::Assert::IsTrue(succeeded);
+    Assert::IsTrue(succeeded);
   }
 
 };

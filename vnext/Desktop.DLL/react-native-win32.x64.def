@@ -187,3 +187,10 @@ DllGetActivationFactory = WINRT_GetActivationFactory    PRIVATE
 ?GetName@ReactPropertyBagHelper@ReactNative@Microsoft@winrt@@SA?AUIReactPropertyName@234@AEBUIReactPropertyNamespace@234@AEBUhstring@param@4@@Z
 ??0ReactNativeHost@ReactNative@Microsoft@winrt@@QEAA@XZ
 ?Instance@IDispatchQueueStatic@Mso@@SAPEAU12@XZ
+?UIDispatcherProperty@ReactDispatcherHelper@ReactNative@Microsoft@winrt@@SA?AUIReactPropertyName@234@XZ
+?CrashWithRecovery@@YAXI@Z
+MsoAssertSzTagProc
+?EnterIgnoreLeakScope@Memory@Mso@@YAXI@Z
+?LeaveIgnoreLeakScope@Memory@Mso@@YAXXZ
+?AllocateEx@Memory@Mso@@YAPEAX_KI@Z
+?Free@Memory@Mso@@YAXPEAX@Z
