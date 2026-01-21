@@ -54,7 +54,10 @@ TEST_CLASS (Prototype) {
 
       msrn::ReactNativeHost host{};
 
-      auto settings = host.InstanceSettings().Properties().Set(msrn::ReactDispatcherHelper::UIDispatcherProperty(), dispatcher);
+      auto settings = host.InstanceSettings();
+      settings.Properties().Set(msrn::ReactDispatcherHelper::UIDispatcherProperty(), dispatcher);
+      //settings.JavaScriptBundleFile(L"TODO");
+
 
       auto action = host.ReloadInstance();
 
