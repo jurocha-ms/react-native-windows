@@ -42,6 +42,11 @@ private:
   DWORD m_threadId{0};
 };
 
+msrn::ReactPropertyId<winrt::hstring> PlatformNameOverrideProperty() noexcept {
+  static msrn::ReactPropertyId<winrt::hstring> prop{L"ReactNative.Injection", L"PlatformNameOverride"};
+  return prop;
+}
+
 TEST_CLASS (Prototype) {
 
   TEST_METHOD(Proto1)
@@ -56,7 +61,9 @@ TEST_CLASS (Prototype) {
 
       auto settings = host.InstanceSettings();
       settings.Properties().Set(msrn::ReactDispatcherHelper::UIDispatcherProperty(), dispatcher);
-      //settings.JavaScriptBundleFile(L"TODO");
+      settings.Properties().Set(PlatformNameOverrideProperty().Handle(), winrt::box_value(L"windows"));
+      settings.UseFastRefresh(true);
+      settings.JavaScriptBundleFile(L"IntegrationTests/IntegrationTestsApp");
 
 
       auto action = host.ReloadInstance();
