@@ -49,6 +49,12 @@ msrn::ReactPropertyId<winrt::hstring> PlatformNameOverrideProperty() noexcept {
 
 TEST_CLASS (Prototype) {
 
+  TEST_CLASS_INITIALIZE(Initialize)
+  {
+    winrt::uninit_apartment();
+    winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  }
+
   TEST_METHOD(Proto1)
   {
     bool succeeded = true;
