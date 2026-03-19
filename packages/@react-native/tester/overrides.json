@@ -1,5 +1,5 @@
 {
-  "baseVersion": "0.83.0-nightly-20251104-502efe1cc",
+  "baseVersion": "0.83.0-rc.5",
   "overrides": [
     {
       "type": "copy",
@@ -584,14 +584,14 @@
       "type": "copy",
       "file": "js/utils/RNTesterList.android.js",
       "baseFile": "packages/rn-tester/js/utils/RNTesterList.android.js",
-      "baseHash": "419d588f738d7f9fc252019e74ca7bc92c6a03bf",
+      "baseHash": "9e24a7f44a1ce84be3c142622ed4c412265dcb2a",
       "issue": 13228
     },
     {
       "type": "copy",
       "file": "js/utils/RNTesterList.ios.js",
       "baseFile": "packages/rn-tester/js/utils/RNTesterList.ios.js",
-      "baseHash": "b164cd5f108ebdeed2fc45512e72ab4d53e6e5ed",
+      "baseHash": "e450244e854f09e426b9c40c1bc18cfeb110c87e",
       "issue": 13228
     },
     {
@@ -661,7 +661,7 @@
       "type": "patch",
       "file": "package.json",
       "baseFile": "packages/rn-tester/package.json",
-      "baseHash": "022490d028b758a31467e90fb6622cd8021e0592",
+      "baseHash": "ddd1f85dd1cfeaf8ebc716488e98b11aad283196",
       "issue": 13228
     },
     {
