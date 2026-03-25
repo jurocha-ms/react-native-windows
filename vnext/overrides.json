@@ -186,6 +186,13 @@
       "baseHash": "4b2822199233e660f36c01df18fbbff7799968cc"
     },
     {
+      "type": "patch",
+      "file": "ReactCommon/TEMP_UntilReactCommonUpdate/react/renderer/components/view/BaseViewProps.cpp",
+      "baseFile": "packages/react-native/ReactCommon/react/renderer/components/view/BaseViewProps.cpp",
+      "baseHash": "7d18752821bfda953722017ea05bde14a2323123",
+      "issue": 15827
+    },
+    {
       "type": "derived",
       "file": "ReactCommon/TEMP_UntilReactCommonUpdate/react/renderer/core/DynamicEventPayload.cpp",
       "baseFile": "packages/react-native/ReactCommon/react/renderer/core/DynamicEventPayload.cpp",
