@@ -222,6 +222,11 @@ const Components: Array<RNTesterModuleInfo> = [
     category: 'Basic',
     module: require('../examples/Performance/PerformanceComparisonExample'),
   },
+  {
+    key: 'NativePerfBenchmark',
+    category: 'Basic',
+    module: require('../examples-win/NativePerfBenchmark/NativePerfBenchmarkExample'),
+  },
   ...RNTesterListFbInternal.Components,
 ];
 
