@@ -44,11 +44,7 @@ type AccessibilityEventDefinitions = {
   screenReaderChanged: [boolean],
 };
 
-type AccessibilityEventTypes =
-  | 'click'
-  | 'focus'
-  | 'viewHoverEnter'
-  | 'windowStateChange';
+type AccessibilityEventTypes = 'click' | 'focus' | 'viewHoverEnter';
 
 // Mapping of public event names to platform-specific event names.
 const EventNames: Map<
@@ -466,8 +462,6 @@ const AccessibilityInfo = {
    * Set accessibility focus to a React component.
    *
    * See https://reactnative.dev/docs/accessibilityinfo#setaccessibilityfocus
-   *
-   * @deprecated Use `sendAccessibilityEvent` with eventType `focus` instead.
    */
   setAccessibilityFocus(reactTag: number): void {
     legacySendAccessibilityEvent(reactTag, 'focus');

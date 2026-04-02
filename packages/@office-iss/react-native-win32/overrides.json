@@ -7,7 +7,7 @@
     "**/__snapshots__/**",
     "src-win/rntypes/**"
   ],
-  "baseVersion": "0.84.0-nightly-20260107-58bc6c3e3",
+  "baseVersion": "0.84.0-rc.5",
   "overrides": [
     {
       "type": "derived",
@@ -47,7 +47,7 @@
       "type": "derived",
       "file": "src-win/Libraries/Components/AccessibilityInfo/AccessibilityInfo.win32.js",
       "baseFile": "packages/react-native/Libraries/Components/AccessibilityInfo/AccessibilityInfo.js",
-      "baseHash": "c0c7037e52d48caae88cffaac7f60d4dd1c32b3e"
+      "baseHash": "86b1d5f06946b43428b2b09351ab6a0cff56a894"
     },
     {
       "type": "copy",
