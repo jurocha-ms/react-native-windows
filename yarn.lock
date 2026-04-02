@@ -2766,15 +2766,20 @@
   resolved "https://registry.yarnpkg.com/@react-native/new-app-screen/-/new-app-screen-0.84.0-nightly-20260107-58bc6c3e3.tgz#34ed680213e7fbde3aadb26075f80e578435caff"
   integrity sha512-nS2fp4nVP0ZfILX7Xdtojn3NkYunyhCrYJ6wTj1twy1+vNhT1fHJyNltbF6V7dFK33TkYTgvQipORA+5PxULkQ==
 
+"@react-native/new-app-screen@0.84.0-rc.5":
+  version "0.84.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@react-native/new-app-screen/-/new-app-screen-0.84.0-rc.5.tgz#e7c9bd82cd3b88c1cdfd42e8c508fa737082d7d1"
+  integrity sha512-eun2vfQ5GLyN1DpHu9gHSMkVk+pKrHWKYMrz47hjUls67Qw/wZfs2YNokMMCUNk4G7cf0XSZx1b0Iuhc+SlOVw==
+
 "@react-native/normalize-colors@0.84.0-rc.5":
   version "0.84.0-rc.5"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.84.0-rc.5.tgz#acc4378ea1ff4449e560d844d2c1748049b32217"
   integrity sha512-hckMQO86nO0itMZTfE1ziT1oEvQIeDVv0gjHYtruc38ak1wQbzhyo/33MW+LU+JQb69IqmxBofRxE5Hzut7X2w==
 
-"@react-native/popup-menu-android@0.84.0-nightly-20260107-58bc6c3e3":
-  version "0.84.0-nightly-20260107-58bc6c3e3"
-  resolved "https://registry.yarnpkg.com/@react-native/popup-menu-android/-/popup-menu-android-0.84.0-nightly-20260107-58bc6c3e3.tgz#b47bedd9ba831697f85a47c792e38dcd929f8db6"
-  integrity sha512-SNvqudhKAxVhs+jabHxhj8KcuQ7ezGgJ/woh3soYpi9W2syUr09H9UONaP8rXr3dVjhfHekCYcqeaLYqYMZnWA==
+"@react-native/popup-menu-android@0.84.0-rc.5":
+  version "0.84.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@react-native/popup-menu-android/-/popup-menu-android-0.84.0-rc.5.tgz#5afd7614845e96fd06764eccbeab3d0754d90fd2"
+  integrity sha512-OZOyAleYGpV54mq+tTZ47HGR8jf1MEudR10HbkzGqqt5U/+jXo65O0PNShuQEUuJ9vMbBvMTlgXiIHamu+VPyA==
   dependencies:
     nullthrows "^1.1.1"
 

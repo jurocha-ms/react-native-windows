@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@react-native/new-app-screen": "0.84.0-nightly-20260107-58bc6c3e3",
-    "@react-native/tester": "0.84.0-nightly-20260107-58bc6c3e3",
+    "@react-native/tester": "0.84.0-rc.5",
     "@rnw-scripts/babel-react-native-config": "0.0.0",
     "@rnw-scripts/eslint-config": "1.2.38",
     "@rnw-scripts/just-task": "2.3.58",
