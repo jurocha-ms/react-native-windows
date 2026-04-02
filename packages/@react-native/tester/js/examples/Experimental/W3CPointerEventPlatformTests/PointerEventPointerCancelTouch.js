@@ -23,7 +23,7 @@ function PointerEventPointerCancelTouchTestCase(
 ) {
   const {harness} = props;
 
-  const testPointerEvent = harness.useAsyncTest('pointercancel event received');
+  const testPointerEvent = harness.useAsyncTest('pointercancel event recieved');
 
   const pointerDownEventRef = useRef<PointerEvent | null>(null);
   const pointerCancelEventRef = useRef<PointerEvent | null>(null);
@@ -40,7 +40,7 @@ function PointerEventPointerCancelTouchTestCase(
 
       testPointerEvent.step(({assert_equals, assert_not_equals}) => {
         const pointerDownEvent = pointerDownEventRef.current;
-        assert_not_equals(pointerDownEvent, null, 'pointerdown was received: ');
+        assert_not_equals(pointerDownEvent, null, 'pointerdown was recieved: ');
         if (pointerDownEvent != null) {
           assert_equals(
             event.nativeEvent.pointerId,
@@ -87,7 +87,7 @@ function PointerEventPointerCancelTouchTestCase(
         assert_not_equals(
           pointerCancelEvent,
           null,
-          'pointercancel was received: ',
+          'pointercancel was recieved: ',
         );
         if (pointerCancelEvent != null) {
           assert_equals(
@@ -118,7 +118,7 @@ function PointerEventPointerCancelTouchTestCase(
         assert_not_equals(
           pointerCancelEvent,
           null,
-          'pointercancel was received: ',
+          'pointercancel was recieved: ',
         );
         if (pointerCancelEvent != null) {
           assert_equals(
