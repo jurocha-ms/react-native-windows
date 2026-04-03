@@ -116,8 +116,15 @@ for /f "delims=" %%a in ('npm show react@%R_VERSION% version') do @set R_VERSION
 
 @echo creaternwlib.cmd Creating RNW lib "%LIB_NAME%" with react@%R_VERSION%, react-native@%RN_VERSION%, and react-native-windows@%RNW_VERSION%
 
-@echo creaternwlib.cmd Creating base RN library project with: npx --yes create-react-native-library@0.48.9 --slug %LIB_NAME% --description %LIB_NAME% --author-name "React-Native-Windows Bot" --author-email 53619745+rnbot@users.noreply.github.com --author-url http://example.com --repo-url http://example.com --languages kotlin-objc --local false --type %RN_TEMPLATE_TYPE% --react-native-version %RN_VERSION% --example vanilla %LIB_NAME%
-call npx --yes create-react-native-library@0.48.9 --slug %LIB_NAME% --description %LIB_NAME% --author-name "React-Native-Windows Bot" --author-email 53619745+rnbot@users.noreply.github.com --author-url http://example.com --repo-url http://example.com --languages kotlin-objc --local false --type %RN_TEMPLATE_TYPE% --react-native-version %RN_VERSION% --example vanilla %LIB_NAME%
+set CRNL_RN_VERSION_ARG=--react-native-version %RN_VERSION%
+if not "x%RN_VERSION:-rc=%"=="x%RN_VERSION%" (
+  @echo creaternwlib.cmd Override --react-native-version for RC build, will fix up versions later
+  REM RC versions may not have a corresponding template published to npm, omit --react-native-version
+  set CRNL_RN_VERSION_ARG=
+)
+
+@echo creaternwlib.cmd Creating base RN library project with: npx --yes create-react-native-library@0.48.9 --slug %LIB_NAME% --description %LIB_NAME% --author-name "React-Native-Windows Bot" --author-email 53619745+rnbot@users.noreply.github.com --author-url http://example.com --repo-url http://example.com --languages kotlin-objc --local false --type %RN_TEMPLATE_TYPE% %CRNL_RN_VERSION_ARG% --example vanilla %LIB_NAME%
+call npx --yes create-react-native-library@0.48.9 --slug %LIB_NAME% --description %LIB_NAME% --author-name "React-Native-Windows Bot" --author-email 53619745+rnbot@users.noreply.github.com --author-url http://example.com --repo-url http://example.com --languages kotlin-objc --local false --type %RN_TEMPLATE_TYPE% %CRNL_RN_VERSION_ARG% --example vanilla %LIB_NAME%
 
 if %ERRORLEVEL% neq 0 (
   @echo creaternwlib.cmd: Unable to create base RN library project
@@ -128,6 +135,18 @@ pushd "%LIB_NAME%"
 
 if not "x%RN_VERSION:nightly=%"=="x%RN_VERSION%" (
   @echo creaternwlib.cmd Fixing react-native nightly issue
+  pwsh.exe -Command "(gc package.json) -replace '""react-native"": ""[^\*]*""', '""react-native"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  pwsh.exe -Command "(gc package.json) -replace '""@react-native/(.+-(config|preset))"": "".*""', '""@react-native/$1"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  pwsh.exe -Command "(gc package.json) -replace '""@react-native-community/cli((-platform-)?(ios|android))?"": "".*""', '""@react-native-community/cli$1"": ""%RNCLI_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  pushd example
+  pwsh.exe -Command "(gc package.json) -replace '""react-native"": ""[^\*]*""', '""react-native"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  pwsh.exe -Command "(gc package.json) -replace '""@react-native/(.+-(config|preset))"": "".*""', '""@react-native/$1"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  pwsh.exe -Command "(gc package.json) -replace '""@react-native-community/cli((-platform-)?(ios|android))?"": "".*""', '""@react-native-community/cli$1"": ""%RNCLI_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
+  popd
+)
+
+if not "x%RN_VERSION:-rc=%"=="x%RN_VERSION%" (
+  @echo creaternwlib.cmd Fixing react-native RC version
   pwsh.exe -Command "(gc package.json) -replace '""react-native"": ""[^\*]*""', '""react-native"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
   pwsh.exe -Command "(gc package.json) -replace '""@react-native/(.+-(config|preset))"": "".*""', '""@react-native/$1"": ""%RN_VERSION%""' | Out-File -encoding utf8NoBOM package.json"
   pwsh.exe -Command "(gc package.json) -replace '""@react-native-community/cli((-platform-)?(ios|android))?"": "".*""', '""@react-native-community/cli$1"": ""%RNCLI_VERSION%""' | Out-File -encoding utf8NoBOM package.json"

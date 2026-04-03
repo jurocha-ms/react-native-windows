@@ -120,6 +120,13 @@ if not "x%RN_VERSION:nightly=%"=="x%RN_VERSION%" (
   set RNCLI_TEMPLATE=--template "@react-native-community/template@0.84.1"
 )
 
+if not "x%RN_VERSION:-rc=%"=="x%RN_VERSION%" (
+  @echo creaternwapp.cmd Override @react-native-community/template version for RC
+  REM RC versions may not have a corresponding template published to npm
+  REM Windows we need to manually update this with every integration #15124
+  set RNCLI_TEMPLATE=--template "@react-native-community/template@0.84.1"
+)
+
 @echo creaternwapp.cmd: Creating base RN app project with: npx --yes @react-native-community/cli@%RNCLI_VERSION% init %APP_NAME% --version %RN_VERSION% %RNCLI_TEMPLATE% --verbose --skip-install --install-pods false --skip-git-init true
 call npx --yes @react-native-community/cli@%RNCLI_VERSION% init %APP_NAME% --version %RN_VERSION% %RNCLI_TEMPLATE% --verbose --skip-install --install-pods false --skip-git-init true
 
