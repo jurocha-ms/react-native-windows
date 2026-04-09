@@ -129,7 +129,7 @@
         "type": "Project",
         "dependencies": {
           "ReactWindows.OpenSSL.StdCall.Static": "[1.0.2-p.5, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "reactcommon": {
