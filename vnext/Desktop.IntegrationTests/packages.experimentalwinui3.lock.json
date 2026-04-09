@@ -4,9 +4,9 @@
     "native,Version=v0.0": {
       "boost": {
         "type": "Direct",
-        "requested": "[1.83.0, )",
-        "resolved": "1.83.0",
-        "contentHash": "cy53VNMzysEMvhBixDe8ujPk67Fcj3v6FPHQnH91NYJNLHpc6jxa2xq9ruCaaJjE4M3YrGSHDi4uUSTGBWw6EQ=="
+        "requested": "[1.84.0, )",
+        "resolved": "1.84.0",
+        "contentHash": "4el2YP3cNJDVFPdzOso+LxGvdWP2rHxML4siq8VdonNypW2m4q503tHfCj6vK0L1UfxioE2hpFGb4ITEua73tg=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Direct",
@@ -73,7 +73,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "fmt": {
@@ -82,7 +82,7 @@
       "folly": {
         "type": "Project",
         "dependencies": {
-          "boost": "[1.83.0, )",
+          "boost": "[1.84.0, )",
           "fmt": "[1.0.0, )"
         }
       },
@@ -104,7 +104,7 @@
           "Microsoft.WindowsAppSDK": "[1.7.250127003-experimental3, )",
           "ReactCommon": "[1.0.0, )",
           "ReactNative.V8Jsi.Windows": "[0.71.8, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "react.windows.desktop.dll": {
@@ -114,7 +114,7 @@
           "Microsoft.SourceLink.GitHub": "[1.1.1, )",
           "React.Windows.Desktop": "[1.0.0, )",
           "ReactNative.V8Jsi.Windows": "[0.71.8, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "react.windows.integrationtests": {
@@ -122,21 +122,21 @@
         "dependencies": {
           "Common": "[1.0.0, )",
           "Folly": "[1.0.0, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "react.windows.test": {
         "type": "Project",
         "dependencies": {
           "ReactWindows.OpenSSL.StdCall.Static": "[1.0.2-p.5, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "reactcommon": {
         "type": "Project",
         "dependencies": {
           "Folly": "[1.0.0, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       }
     }
