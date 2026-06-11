@@ -81,9 +81,9 @@
     <ErrorReport>prompt</ErrorReport>
     <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\NuGet.CSharp.props" />
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\WinUI.props" />
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.CSharp.Dependencies.props" />

@@ -74,9 +74,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\NuGet.CSharp.props" />
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\WinUI.props" />
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.CSharp.Dependencies.props" />
@@ -138,6 +138,7 @@
       <Version>$(NETCoreUWPVersion)</Version>
     </PackageReference>
   </ItemGroup>
+  <!-- TODO??? -->
   <!--
     Visual Studio (but not MSBuild) will ignore Conditions applied directly to
     the PackageReference or ItemGroup containing a PackageReference. Both

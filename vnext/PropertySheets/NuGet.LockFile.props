@@ -16,7 +16,7 @@
       in VS so the initial restore succeeds and package targets load correctly.
       CI is unaffected: it passes /p:RestoreLockedMode=true as a global property which overrides this.
     -->
-    <RestoreLockedMode Condition="'$(BuildingInsideVisualStudio)' == 'true' AND '$(MSBuildProjectExtension)' == '.csproj'">false</RestoreLockedMode>
+    <!-- <RestoreLockedMode Condition="'$(BuildingInsideVisualStudio)' == 'true' AND '$(MSBuildProjectExtension)' == '.csproj'">false</RestoreLockedMode> -->
 
     <NuGetLockFileName>packages</NuGetLockFileName>
     <NuGetLockFileName Condition="'$(UseExperimentalWinUI3)'=='true'">$(NuGetLockFileName).experimentalwinui3</NuGetLockFileName>

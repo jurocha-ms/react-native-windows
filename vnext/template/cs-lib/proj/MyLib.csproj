@@ -96,9 +96,9 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactNativeModule.cs" />

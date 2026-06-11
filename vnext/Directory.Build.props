@@ -19,7 +19,7 @@
     -->
     <EnableSourceLink Condition="'$(EnableSourceLink)' == '' AND '$(BuildingInRnwRepo)' == 'true'">true</EnableSourceLink>
     <EnableSourceLink Condition="'$(EnableSourceLink)' == ''">false</EnableSourceLink>
-    
+
     <!-- Symbol Publishing Compliance (Work Item 59264834) - Generate PDB files for Release builds -->
     <DebugSymbols Condition="'$(Configuration)' == 'Release'">true</DebugSymbols>
     <DebugType Condition="'$(Configuration)' == 'Release'">pdbonly</DebugType>
@@ -80,7 +80,7 @@
   <PropertyGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
     <!-- See https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#restore-target -->
     <!-- RestoreUseStaticGraphEvaluation broke in VS 17.6, see https://github.com/microsoft/react-native-windows/issues/11670 -->
-    <RestoreUseStaticGraphEvaluation Condition="'$(BuildingInsideVisualStudio)' == 'true' AND $([MSBuild]::VersionLessThan('$(MSBuildVersion)', '17.6')) AND '$(DisableRestoreUseStaticGraphEvaluation)' != 'true'">true</RestoreUseStaticGraphEvaluation>
+    <!-- <RestoreUseStaticGraphEvaluation Condition="'$(BuildingInsideVisualStudio)' == 'true' AND $([MSBuild]::VersionLessThan('$(MSBuildVersion)', '17.6')) AND '$(DisableRestoreUseStaticGraphEvaluation)' != 'true'">true</RestoreUseStaticGraphEvaluation> -->
   </PropertyGroup>
 
 </Project>

@@ -16,6 +16,7 @@
   <!-- Import targets common to all projects. -->
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Common.targets" />
 
+  <!-- TODO??? -->
   <!-- Due to visual studio unconditionally showing references, we have to trick it by making it impossible for VS to find the reference differences between building as source and building as NuGet -->
   <Import Project="$(ReactNativeWindowsDir)PropertySheets\External\Microsoft.ReactNative.CSharp.ProjectReferences.props" Condition="!$(UseExperimentalNuget)" />
   <Import Project="$(ReactNativeWindowsDir)PropertySheets\External\Microsoft.ReactNative.CSharp.PackageReferences.props" Condition="$(UseExperimentalNuget)" />
