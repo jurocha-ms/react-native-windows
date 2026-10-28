@@ -155,7 +155,8 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Desktop.IntegrationTests\TurboModuleLifetimeTestHooks.cpp" Condition="'$(EnableV8LifetimeTests)' == 'true'">
-      <AdditionalIncludeDirectories>$(ReactNativeWindowsDir)Microsoft.ReactNative;$(ReactNativeWindowsDir)Common;$(IntDir)..\React.Windows.Desktop\Generated Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ReactNativeWindowsDir);$(ReactNativeWindowsDir)Microsoft.ReactNative;$(ReactNativeWindowsDir)Microsoft.ReactNative\ReactHost;$(ReactNativeWindowsDir)Microsoft.ReactNative.Cxx;$(ReactNativeWindowsDir)Common;$(ReactNativeWindowsDir)Mso;$(IntDir)..\React.Windows.Desktop\Generated Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CORE_ABI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

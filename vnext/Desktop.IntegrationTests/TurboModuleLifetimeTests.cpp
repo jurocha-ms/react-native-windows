@@ -18,7 +18,7 @@ namespace Microsoft::React::Test {
 namespace {
 
 using Stats = v8runtime::HostProxyLifetimeStats;
-using CreateModule = void(__cdecl *)(jsi::Runtime *, jsi::Object *);
+using CreateModule = HRESULT(__cdecl *)(jsi::Runtime *, jsi::Object *);
 using CreateRuntime = jsi::Runtime *(__cdecl *)();
 using GetStats = void(__cdecl *)(Stats *) noexcept;
 
@@ -61,7 +61,9 @@ class LifetimeTestRuntime {
 
   jsi::Object Module(jsi::Runtime &runtime) const {
     jsi::Object module(runtime);
-    m_createModule(&runtime, &module);
+    Assert::IsTrue(
+        SUCCEEDED(m_createModule(&runtime, &module)),
+        L"LifetimeTest module creation failed: check the React context and JSI runtime.");
     return module;
   }
 
